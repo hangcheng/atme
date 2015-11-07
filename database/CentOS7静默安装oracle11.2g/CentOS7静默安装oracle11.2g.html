@@ -1,0 +1,766 @@
+<!doctype HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+<title>CentOS7静默安装oracle11.2g</title>
+<style>
+/* RESET
+=============================================================================*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+	blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
+	em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
+	b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
+	details, embed, figure, figcaption, footer, header, hgroup, menu, nav,
+	output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+/* BODY
+=============================================================================*/
+body {
+	font-family: Helvetica, arial, freesans, clean, sans-serif;
+	font-size: 14px;
+	line-height: 1.6;
+	color: #333;
+	background-color: #fff;
+	padding: 0 30px 0 270px;
+	max-width: 960px;
+	margin: 0 auto;
+}
+
+body>*:first-child {
+	margin-top: 0 !important;
+}
+
+body>*:last-child {
+	margin-bottom: 0 !important;
+}
+
+/**********   索引 **********************************/
+nav {
+	font-size: 10pt;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 270px;
+}
+
+nav .menubar {
+	border-bottom: solid 1px #ccc;
+	display: none;
+	height: 48px;
+	line-height: 48px;
+	padding: 0 10px;
+}
+
+nav .button {
+	background: #777;
+	border: 1px solid #333;
+	color: #fff;
+	font-size: 10pt;
+	font-weight: bold;
+	padding: 8px;
+	border-radius: 4px;
+}
+
+nav ul {
+	padding: 0 0 0 10px;
+}
+
+nav ul a {
+	color: #333;
+	text-decoration: none;
+}
+
+nav ul a:hover {
+	text-decoration: underline;
+}
+
+nav li {
+	line-height: 180%;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav .level2 {
+	font-size: 11pt;
+	font-weight: bold;
+}
+
+nav .level3 {
+	padding-left: 1em;
+}
+
+nav .level3:before {
+	content: "";
+}
+
+nav .level4 {
+	padding-left: 2em;
+}
+
+nav .level4:before {
+	content: "";
+}
+
+nav .level5 {
+	padding-left: 4em;
+}
+
+nav .level5:before {
+	content: "";
+}
+
+nav .level6 {
+	padding-left: 8em;
+}
+
+nav .level6:before {
+	content: "";
+}
+
+header {
+	text-align: center;
+}
+
+/* BLOCKS
+=============================================================================*/
+p, blockquote, ul, ol, dl, table, pre {
+	margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+h1, h2, h3, h4, h5, h6 {
+	margin: 20px 0 10px;
+	padding: 0;
+	font-weight: bold;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt,
+	h5 code, h6 tt, h6 code {
+	font-size: inherit;
+}
+
+h1 {
+	font-size: 28px;
+	color: #000;
+}
+
+h2 {
+	font-size: 24px;
+	border-bottom: 1px solid #ccc;
+	color: #000;
+}
+
+h3 {
+	font-size: 18px;
+}
+
+h4 {
+	font-size: 16px;
+}
+
+h5 {
+	font-size: 14px;
+}
+
+h6 {
+	color: #777;
+	font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child,
+	body>h4:first-child, body>h5:first-child, body>h6:first-child {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4,
+	a:first-child h5, a:first-child h6 {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+	margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+a {
+	color: #4183C4;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+ul, ol {
+	padding-left: 30px;
+}
+
+ul li>:first-child, ol li>:first-child, ul li ul:first-of-type, ol li ol:first-of-type,
+	ul li ol:first-of-type, ol li ul:first-of-type {
+	margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+	margin-bottom: 0;
+}
+
+dl {
+	padding: 0;
+}
+
+dl dt {
+	font-size: 14px;
+	font-weight: bold;
+	font-style: italic;
+	padding: 0;
+	margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+	padding: 0;
+}
+
+dl dt>:first-child {
+	margin-top: 0px;
+}
+
+dl dt>:last-child {
+	margin-bottom: 0px;
+}
+
+dl dd {
+	margin: 0 0 15px;
+	padding: 0 15px;
+}
+
+dl dd>:first-child {
+	margin-top: 0px;
+}
+
+dl dd>:last-child {
+	margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+pre, code, tt {
+	font-size: 12px;
+	font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+	margin: 0 0px;
+	padding: 0px 0px;
+	white-space: nowrap;
+	border: 1px solid #eaeaea;
+	background-color: #f8f8f8;
+	border-radius: 3px;
+}
+
+pre>code {
+	margin: 0;
+	padding: 0;
+	white-space: pre;
+	border: none;
+	background: transparent;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #ccc;
+	font-size: 13px;
+	line-height: 19px;
+	overflow: auto;
+	padding: 6px 10px;
+	border-radius: 3px;
+}
+
+pre code, pre tt {
+	background-color: transparent;
+	border: none;
+}
+
+kbd {
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	background-color: #DDDDDD;
+	background-image: linear-gradient(#F1F1F1, #DDDDDD);
+	background-repeat: repeat-x;
+	border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+	border-image: none;
+	border-radius: 2px 2px 2px 2px;
+	border-style: solid;
+	border-width: 1px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	line-height: 10px;
+	padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+blockquote {
+	border-left: 4px solid #DDD;
+	padding: 0 15px;
+	color: #777;
+}
+
+blockquote>:first-child {
+	margin-top: 0px;
+}
+
+blockquote>:last-child {
+	margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+hr {
+	clear: both;
+	margin: 15px 0;
+	height: 0px;
+	overflow: hidden;
+	border: none;
+	background: transparent;
+	border-bottom: 4px solid #ddd;
+	padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+table th {
+	font-weight: bold;
+}
+
+table th, table td {
+	border: 1px solid #ccc;
+	padding: 6px 13px;
+}
+
+table tr {
+	border-top: 1px solid #ccc;
+	background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+	background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+img {
+	max-width: 100%
+}
+
+/***********  底部 *************************/
+footer {
+	border-top: 1px solid #ccc;
+	font-size: 10pt;
+	margin-top: 4em;
+}
+
+/******************** media **********************************/
+@media ( max-width : 768px) {
+	body {
+		padding: 0 10px 0 300px;
+	}
+	nav {
+		width: 300px;
+	}
+}
+
+@media ( max-width : 480px) {
+	body {
+		padding: 64px 10px 0 10px;
+	}
+	header .banner {
+		display: none;
+	}
+	nav {
+		position: absolute;
+		width: 100%;
+	}
+	nav .menubar {
+		display: block;
+	}
+	nav .banner {
+		float: right;
+	}
+	nav ul {
+		background: #fff;
+		display: none;
+		font-size: 14pt;
+		margin: 0;
+		padding: 0 0 0 8px;
+	}
+	nav .level2 {
+		font-size: 16pt;
+		font-weight: bold;
+	}
+	nav li {
+		line-height: 240%;
+	}
+	.index nav ul {
+		display: block;
+	}
+	.index article {
+		display: none;
+	}
+}
+</style>
+<script>
+  (function (tags) {
+    var i = 0, len = tags.length;
+
+    for (; i < len; ++i) {
+        document.createElement(tags[i]);
+    }
+  }([ 'header', 'nav', 'article', 'footer' ]));
+</script>
+</head>
+<body>
+<header>
+<h1 id="centos7-oracle11-2g">CentOS7静默安装oracle11.2g</h1>
+
+</header>
+<nav>
+<div class="menubar">
+<a class="button">&#9776;&nbsp;索引</a>
+</div>
+<ul>
+<li class="level2"><a href="#1">1&nbsp;&nbsp;前期工作</a></li><li class="level3"><a href="#1.1">1.1&nbsp;&nbsp;网络设置</a></li><li class="level3"><a href="#1.2">1.2&nbsp;&nbsp;防火墙</a></li><li class="level4"><a href="#1.2.1">1.2.1&nbsp;&nbsp;临时开启或关闭防火墙</a></li><li class="level4"><a href="#1.2.2">1.2.2&nbsp;&nbsp;永久开启或关闭防火墙</a></li><li class="level4"><a href="#1.2.3">1.2.3&nbsp;&nbsp;推荐打开 1521 端口用于oracle</a></li><li class="level2"><a href="#2">2&nbsp;&nbsp;配置 oracle 环境</a></li><li class="level3"><a href="#2.1">2.1&nbsp;&nbsp;检查安装依赖环境</a></li><li class="level3"><a href="#2.2">2.2&nbsp;&nbsp;安装基本常用工具</a></li><li class="level3"><a href="#2.3">2.3&nbsp;&nbsp;建立用户、组、安装目录</a></li><li class="level4"><a href="#2.3.1">2.3.1&nbsp;&nbsp;建立用户和组</a></li><li class="level4"><a href="#2.3.2">2.3.2&nbsp;&nbsp;建立安装目录</a></li><li class="level3"><a href="#2.4">2.4&nbsp;&nbsp;修改参数</a></li><li class="level4"><a href="#2.4.1">2.4.1&nbsp;&nbsp;内核参数</a></li><li class="level4"><a href="#2.4.2">2.4.2&nbsp;&nbsp;改文件限制</a></li><li class="level4"><a href="#2.4.3">2.4.3&nbsp;&nbsp;修改 ulimit</a></li><li class="level4"><a href="#2.4.4">2.4.4&nbsp;&nbsp;修改 oracle 用户环境变量</a></li><li class="level2"><a href="#3">3&nbsp;&nbsp;安装oracle</a></li><li class="level3"><a href="#3.1">3.1&nbsp;&nbsp;上传oracle安装包并解压</a></li><li class="level3"><a href="#3.2">3.2&nbsp;&nbsp;拷贝并编辑静默安装文件</a></li><li class="level3"><a href="#3.3">3.3&nbsp;&nbsp;开始安装数据库软件</a></li><li class="level2"><a href="#4">4&nbsp;&nbsp;安装监听与创建数据库与实例</a></li><li class="level3"><a href="#4.1">4.1&nbsp;&nbsp;安装监听</a></li><li class="level3"><a href="#4.2">4.2&nbsp;&nbsp;创建数据库和实例</a></li><li class="level2"><a href="#5">5&nbsp;&nbsp;启动与服务</a></li><li class="level3"><a href="#5.1">5.1&nbsp;&nbsp;修改oracle启动配置文件<em>*</em></a></li><li class="level4"><a href="#5.1.1">5.1.1&nbsp;&nbsp;oracle 数据库手动启动</a></li><li class="level5"><a href="#5.1.1.1">5.1.1.1&nbsp;&nbsp;启动</a></li><li class="level5"><a href="#5.1.1.2">5.1.1.2&nbsp;&nbsp;停止</a></li><li class="level4"><a href="#5.1.2">5.1.2&nbsp;&nbsp;oracle 数据库开机自启动</a></li><li class="level3"><a href="#5.2">5.2&nbsp;&nbsp;配置oracle服务</a></li></ul>
+
+</nav>
+<article>
+<h2 id="1">1&nbsp;&nbsp;前期工作</h2>
+<h3 id="1.1">1.1&nbsp;&nbsp;网络设置</h3>
+<blockquote>
+<p>必须要保证网络畅通</p>
+<p>在/etc/hosts文件中增加局域网IP地址和主机名映射(对于单网卡用户直接添加到回环IP下)：</p>
+</blockquote>
+<pre><code> # hostname //获得主机名
+ 结果:oracleserver</code></pre>
+<pre><code> # vi /etc/hosts
+ 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+ ::1         localhost localhost.localdomain localhost6  localhost6.localdomain6
+ 192.168.56.128  oracleserver</code></pre>
+<h3 id="1.2">1.2&nbsp;&nbsp;防火墙</h3>
+<blockquote>
+<p>关于防火墙的问题，默认安装完了是开启防火墙的，会屏蔽掉1521端口，影响其他机器访问本机oracle实例。三种简单办法</p>
+</blockquote>
+<h4 id="1.2.1">1.2.1&nbsp;&nbsp;临时开启或关闭防火墙</h4>
+<blockquote>
+<p>临时开启或关闭防火墙，重启后失效</p>
+<pre><code> # service iptables stop
+ # service iptables star</code></pre>
+</blockquote>
+<h4 id="1.2.2">1.2.2&nbsp;&nbsp;永久开启或关闭防火墙</h4>
+<pre><code> # chkconfig iptables on
+ # chkconfig iptables off</code></pre>
+<h4 id="1.2.3">1.2.3&nbsp;&nbsp;推荐打开 1521 端口用于oracle</h4>
+<pre><code># iptables -I INPUT -p tcp --dport 1521 -j ACCEPT
+# iptables -I INPUT -p tcp --dport 1521 -j ACCEPT
+# iptables -A INPUT -p tcp --dport 1521 -j ACCEPT
+# iptables -A INPUT -p tcp --dport 1521 -j ACCEPT
+# service iptables save //永久保存</code></pre>
+
+<h2 id="2">2&nbsp;&nbsp;配置 oracle 环境</h2>
+<h3 id="2.1">2.1&nbsp;&nbsp;检查安装依赖环境</h3>
+<blockquote>
+<p>检查依赖</p>
+</blockquote>
+<pre><code>rpm -q binutils  compat-libstdc++-33 compat-libstdc++-33.i686  elfutils-libelf elfutils-libelf-devel expat gcc gcc-c++ glibc glibc.i686 glibc-common glibc-devel glibc-headers libaio libaio.i686 libaio-devel libaio-devel.i686 libgcc libgcc.i686 libstdc++ libstdc++.i686 libstdc++-devel make numactl pdksh sysstat unixODBC unixODBC.i686 unixODBC-devel | grep &#39;not installed&#39;</code></pre>
+<blockquote>
+<p>安装oracle必须要的包,oracle 依赖环境 必须安装</p>
+</blockquote>
+<pre><code>yum -y install binutils compat-libcap1 compat-libstdc++-33 compat-libstdc++-33*.i686 elfutilslibelf-devel gcc gcc-c++ glibc*.i686 glibc glibc-devel glibc-devel*.i686 ksh libgcc*.i686 libgcc libstdc++ libstdc++*.i686 libstdc++-devel libstdc++-devel*.i686 libaio libaio*.i686 libaio-devel libaio-devel*.i686 make sysstat unixODBC unixODBC*.i686 unixODBC-devel unixODBCdevel*.i686 libXp glibc-static.x86_64 glibc-static.i686</code></pre>
+<h3 id="2.2">2.2&nbsp;&nbsp;安装基本常用工具</h3>
+<blockquote>
+<p>常用工具</p>
+</blockquote>
+<pre><code>yum install unzip zip</code></pre>
+<h3 id="2.3">2.3&nbsp;&nbsp;建立用户、组、安装目录</h3>
+<h4 id="2.3.1">2.3.1&nbsp;&nbsp;建立用户和组</h4>
+<pre><code>groupadd oinstall
+groupadd dba
+groupadd oper
+useradd -g oinstall -G dba,oper oracle
+echo &quot;oracle&quot; | passwd --stdin oracle
+注意：(前面”oracle”是密码，后面指定 oracle 用户 )</code></pre>
+<blockquote>
+<p>查看一下</p>
+</blockquote>
+<pre><code>id oracle
+结果：uid=1000(oracle) gid=1000(oinstall) 组=1000(oinstall),1001(dba),1002(oper)</code></pre>
+<h4 id="2.3.2">2.3.2&nbsp;&nbsp;建立安装目录</h4>
+<pre><code>mkdir -p /prust/app/oracle/product/11.2.0/db_1
+chown -R oracle:oinstall /prust/app
+chmod -R 775 / prust/app</code></pre>
+<h3 id="2.4">2.4&nbsp;&nbsp;修改参数</h3>
+<h4 id="2.4.1">2.4.1&nbsp;&nbsp;内核参数</h4>
+<pre><code>vim /etc/sysctl.conf
+fs.aio-max-nr = 1048576
+fs.file-max = 6815744
+kernel.shmall = 2097152
+kernel.shmmax = 1200000000
+kernel.shmmni = 4096
+kernel.sem = 250 32000 100 128
+net.ipv4.ip_local_port_range = 9000 65500
+net.core.rmem_default = 262144
+net.core.rmem_max = 4194304
+net.core.wmem_default = 262144
+net.core.wmem_max = 1048576</code></pre>
+<blockquote>
+<p>改好后，使之生效</p>
+</blockquote>
+<pre><code>sysctl -p</code></pre>
+<h4 id="2.4.2">2.4.2&nbsp;&nbsp;改文件限制</h4>
+<pre><code>vim /etc/security/limits.conf
+oracle soft nproc 2047
+oracle hard nproc 16384
+oracle soft nofile 1024
+oracle hard nofile 65536
+oracle soft stack 10240</code></pre>
+<blockquote>
+<p>注意：修改此文件是即时生效的，但可能要重登录后再看</p>
+</blockquote>
+<pre><code>vim /etc/pam.d/login
+#session required /lib/security/pam_limits.so
+session required pam_limits.so</code></pre>
+<h4 id="2.4.3">2.4.3&nbsp;&nbsp;修改 ulimit</h4>
+<pre><code>vim /etc/profile
+if [ $USER = &quot;oracle&quot; ]; then
+if [ $SHELL = &quot;/bin/ksh&quot; ]; then
+    ulimit -p 16384
+    ulimit -n 65536
+else
+    ulimit -u 16384 -n 65536
+fi
+fi</code></pre>
+<h4 id="2.4.4">2.4.4&nbsp;&nbsp;修改 oracle 用户环境变量</h4>
+<pre><code>vim ~oracle/.bash_profile
+ORACLE_BASE=/prust/app/oracle
+ORACLE_HOME=$ORACLE_BASE/product/11.2.0/db_1
+ORACLE_SID=orcl
+export ORACLE_BASE ORACLE_HOME ORACLE_SID
+PATH=.:$ORACLE_HOME/bin:$ORACLE_HOME/OPatch:$ORACLE_HOME/jdk/bin:PATH
+export PATH
+export LC_ALL=&quot;en_US&quot;
+export LANG=&quot;en_US&quot;
+export NLS_LANG=&quot;AMERICAN_AMERICA.ZHS16GBK&quot;
+export NLS_DATE_FORMAT=&quot;YYYY-MM-DD HH24:MI:SS&quot;</code></pre>
+<blockquote>
+<p>注意：
+（这个地方 ORACLE_SID 需要和之后安装界面的 Global database name 保持一致，也是
+ORCL）</p>
+</blockquote>
+
+<h2 id="3">3&nbsp;&nbsp;安装oracle</h2>
+<h3 id="3.1">3.1&nbsp;&nbsp;上传oracle安装包并解压</h3>
+<blockquote>
+<p>提示： (注销当前账号，用 oracle 账号登陆完成安装操作，否则会报错)</p>
+<p>上传采用 ftp   软件 荐：FileZilla</p>
+</blockquote>
+<pre><code># su - oracle
+$ cd /prust/app/oracle
+$ unzip linux.x64_11gR2_database_1of2.zip
+$ unzip linux.x64_11gR2_database_2of2.zip</code></pre>
+<h3 id="3.2">3.2&nbsp;&nbsp;拷贝并编辑静默安装文件</h3>
+<pre><code>$ cp /prust/app/oracle/database/response/*.* /prust/app/
+$ vi db_install.rsp
+
+修改下面的配置参数(具体可以根据网上信息修改)
+oracle.install.option=INSTALL_DB_SWONLY//只安装oracle软件，不安装实例
+ORACLE_HOSTNAME=oracleserver//honstname命令获得的主机名
+UNIX_GROUP_NAME=oinstall
+INVENTORY_LOCATION=/prust/app/oracle/oraInventory
+SELECTED_LANGUAGES=en,zh_CN//安装时的语言，其实en就够了，看中文反而麻烦
+ORACLE_HOME=/prust/app/oracle/product/11.2.0/db_1
+ORACLE_BASE=/prust/app/oracle
+oracle.install.db.InstallEdition=EE
+oracle.install.db.isCustomInstall=false
+oracle.install.db.DBA_GROUP=dba
+oracle.install.db.OPER_GROUP=oinstall
+DECLINE_SECURITY_UPDATES=true //一定设置为true，网上都这么说，我也没试，就设置成true吧</code></pre>
+<h3 id="3.3">3.3&nbsp;&nbsp;开始安装数据库软件</h3>
+<pre><code>$ cd /prust/app/oracle/database
+$ ./runInstaller -silent -force -responseFile /prust/app/db_install.rsp
+ // -silent静默安装 -force文件夹不存在强制创建 -responseFile静默安装响应文件</code></pre>
+<blockquote>
+<p>另开一个窗口，查看安装日志</p>
+</blockquote>
+<pre><code># tail -f /prust/app/oracle/oraInventory/logs/installActions*.log</code></pre>
+<blockquote>
+<p>安装比较慢，耐心等待下
+安装完成，这次出来的是中文，提示如下：</p>
+<p>要执行配置脚本, 请执行以下操作:   </p>
+<pre><code>     1. 打开一个终端窗口   
+     2. 以 &quot;root&quot; 身份登录   
+     3. 运行脚本   
+     4. 返回此窗口并按 &quot;Enter&quot; 键继续   </code></pre>
+<p>按回车继续。<br>在另外一个窗口使用root用户执行</p>
+</blockquote>
+<pre><code># /prust/app/oracle/oraInventory/orainstRoot.sh
+# /prust/app/oracle/product/11.2.0/db_1/root.sh</code></pre>
+<blockquote>
+<p>Oracle软件安装完成。</p>
+</blockquote>
+
+<h2 id="4">4&nbsp;&nbsp;安装监听与创建数据库与实例</h2>
+<h3 id="4.1">4.1&nbsp;&nbsp;安装监听</h3>
+<blockquote>
+<p>使用响应文件netca.rsp配置监听，一般不用修改netca.rsp，直接使用此文件生成默认监听</p>
+</blockquote>
+<pre><code> $ cd /prust/app/oracle/database/
+ $ /prust/app/oracle/product/11.2.0/db_1/bin/netca  /silent  responseFile /prust/app/netca.rsp</code></pre>
+<h3 id="4.2">4.2&nbsp;&nbsp;创建数据库和实例</h3>
+<pre><code>$ cd /prust/app/oracle/database/
+ $ vi dbca.rsp
+ 修改下面的参数
+GDBNAME = &quot;orcl.oracleserver&quot;//数据库名字，多个的话可以都改了
+SID = &quot;orcl&quot;
+TEMPLATENAME = &quot;General_Purpose.dbc&quot;//存在多个的话，可以都改了
+CHARACTERSET = &quot;ZHS16GBK&quot;    //字符集，建库后一般不能更改。也可以使用AL32UTF8
+TOTALMEMORY = &quot;1024&quot;//数据库内存，看个人情况吧，默认800</code></pre>
+<blockquote>
+<p>保存退出<br>执行静默安装
+安装如下</p>
+</blockquote>
+<pre><code>$ /prust/app/oracle/product/11.2.0/db_1/bin/dbca -silent -responseFile /prust/app/dbca.rsp 
+输入 SYS 用户口令: 
+输入 SYSTEM 用户口令: 
+1% 已完成
+3% 已完成
+11% 已完成
+18% 已完成
+26% 已完成
+37% 已完成
+正在创建并启动 Oracle 实例
+40% 已完成
+45% 已完成
+50% 已完成
+55% 已完成
+56% 已完成
+60% 已完成
+62% 已完成
+正在进行数据库创建
+66% 已完成
+70% 已完成
+73% 已完成
+85% 已完成
+96% 已完成
+100% 已完成
+有关详细信息, 请参阅日志文件 &quot;/prust/app/oracle/cfgtoollogs/dbca/orcl/orcl.log&quot;。
+
+安装完成
+
+$lsnrct status//检查监听</code></pre>
+
+<h2 id="5">5&nbsp;&nbsp;启动与服务</h2>
+<h3 id="5.1">5.1&nbsp;&nbsp;修改oracle启动配置文件<em>*</em></h3>
+<pre><code>$vi /etc/oratab
+把 N 改成 Y 
+orcl:/prust/app/oracle/product/11.2.0/db_1:Y</code></pre>
+<h4 id="5.1.1">5.1.1&nbsp;&nbsp;oracle 数据库手动启动</h4>
+<h5 id="5.1.1.1">5.1.1.1&nbsp;&nbsp;启动</h5>
+<pre><code>1.#su - oracle 切换到 oracle 用户且切换到它的环境
+2.$lsnrctl status 查看监听及数据库状态
+3.$lsnrctl start 启动监听
+4.$sqlplus / as sysdba 以 DBA 身份进入 sqlplus
+5.SQL&gt;startup 启动 db</code></pre>
+<h5 id="5.1.1.2">5.1.1.2&nbsp;&nbsp;停止</h5>
+<pre><code>1.#su - oracle 切换到 oracle 用户且切换到它的环境
+2.$lsnrctl stop 停止监听
+3.$sqlplus / as sysdba 以 DBA 身份进入 sqlplus
+4.SQL&gt;SHUTDOWN IMMEDIATE 关闭 db</code></pre>
+<h4 id="5.1.2">5.1.2&nbsp;&nbsp;oracle 数据库开机自启动</h4>
+<blockquote>
+<p>root用户登陆</p>
+<p>编辑/etc/init.d/oracle文件,输入以下内容（修改自己的ORACLE_BASE）</p>
+</blockquote>
+<pre><code>#!/bin/bash
+# For RedHat and cousins:
+# chkconfig: 2345 40 40
+# description: 
+# processname: 
+# For SuSE and cousins
+### BEGIN INIT INFO
+# Provides:                   probe
+# Required-Start:             $syslog $remote_fs
+# Should-Start:               sendmail
+# Required-Stop:              $syslog $remote_fs
+# Should-Stop:                sendmail
+# Default-Start:              2 3 5
+# Default-Stop:
+# Short-Description:          
+# Description:                
+# X-UnitedLinux-Default-Enabled: yes
+### END INIT INFO
+export NLS_LANG=AMERICAN_AMERICA.ZHS16GBK
+export ORACLE_BASE=/prust/app
+export ORACLE_HOME=$ORACLE_BASE/oracle
+export PATH=$PATH:$ORACLE_HOME/bin
+export ORACLE_USER=oracle
+export ORACLE_SID=orcl
+# see how we are called:
+case $1 in
+    start)
+    su - &quot;$ORACLE_USER&quot;&lt;&lt;EOO
+    lsnrctl start
+    sqlplus /nolog&lt;&lt;EOS
+    connect / as sysdba
+    startup
+EOS
+    emctl start dbconsole
+EOO
+touch /var/lock/subsys/$scriptname
+    ;;
+    stop)
+su - &quot;$ORACLE_USER&quot;&lt;&lt;EOO
+    lsnrctl stop
+    sqlplus /nolog&lt;&lt;EOS
+    connect / as sysdba
+    shutdown immediate
+EOS
+    emctl stop dbconsole
+EOO
+rm -f /var/lock/subsys/scriptname
+    ;;
+    *)
+    echo &quot;Usage: $0 {start|stop}&quot;
+    ;;
+esac</code></pre>
+<blockquote>
+<p>设置oracle文件属性：</p>
+</blockquote>
+<pre><code># chown root.root /etc/init.d/oracle
+# chmod 755 /etc/init.d/oracle</code></pre>
+<h3 id="5.2">5.2&nbsp;&nbsp;配置oracle服务</h3>
+<pre><code>#  service oracle start   (启动oracle服务)
+# chkconfig oracle on (配置该服务系统重启后有效)</code></pre>
+
+</article>
+<footer>
+<p>© 2015-2016 杭杭工作室, Inc.</p>
+
+</footer>
+</body>
+</html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>index</title>
+<title>Markdown 生成树形索引</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style type="text/css">
 /* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
@@ -292,44 +292,64 @@ img {
 </style>
 </head>
 <body>
-<p><style>
-	body {
-		max-width: 100% !important;
-		padding:0 20px 10px !important;
-	}
-	a {padding-left:10px;}
-</style></p>
-<h2>Maven</h2>
-<p><a href="http://mvnrepository.com" target="view_window">Maven 仓库</a>
-<a href="maven/maven开发.html" target="view_window">maven 设置</a>
-<a href="maven/pom.xml详解.html" target="view_window">pom.xml 详解</a></p>
-<h2>Java</h2>
-<p><a href="java/spring/spring开发.html" target="view_window">Spring 开发</a>
-<a href="java/mybatis/mybatis开发.html" target="view_window">Mybatis 开发</a>
-<a href="java/cron/cron表达式.html" target="view_window">cron表达式</a>
-<a href="java/CentOs7静默安装Jdk7.html" target="view_window">JDK 安装</a></p>
-<h2>JS &amp; CSS</h2>
-<p><a href="http://t.mb5u.com/jquery" target="view_window">jQuery API</a>
-<a href="http://jq-school.com" target="view_window">jQuery school</a>
-<a href="http://seajs.org" target="view_window">Seajs模块</a>
-<a href="http://www.layui.com" target="view_window">弹出层layer</a>
-<a href="http://www.bootcss.com" target="view_window">Bootstrap</a></p>
-<h2>Nodejs</h2>
-<p><a href="nodejs/nodejs7Day/index.html" target="view_window">七天学会NodeJS</a>
-<a href="nodejs/nodejs/index.html" target="view_window">NodeJS学习</a>
-<a href="https://cnodejs.org" target="view_window">Nodejs中文社区</a>
-<a href="http://nodejs.cn" target="view_window">Nodejs中文网</a>
-<a href="http://www.nodeapp.cn" target="view_window">Nodejs文档</a>
-<a href="http://nodeapi.ucdok.com/#/api" target="view_window">Nodejs API</a></p>
-<h2>Database</h2>
-<p><a href="database/CentOS7静默安装oracle11.2g/CentOS7静默安装oracle11.2g.html" target="view_window">CentOS7静默安装oracle11.2g</a></p>
-<h2>Linux </h2>
-<p><a href="Linux/index.html" target="view_window">Linux 学习</a></p>
-<h2>代码托管  |    Markdown</h2>
-<p><a href="https://github.com" target="view_window">github</a>
-<a href="http://git.oschina.net" target="view_window">oschina(git)</a>
-<a href="http://code.taobao.org" target="view_window">淘宝code(SVN)</a>
-<a href="markdown/Markdown 生成树形索引.html" target="view_window">Markdown索引</a></p>
+<h1>Markdown 生成树形索引 两种方法</h1>
+<hr />
+<h2>方法一 、 天书</h2>
+<blockquote>
+<p>想用<code>markdown</code>编写带索引的单页结构HTML文档的话，可以试试天书。</p>
+</blockquote>
+<h3>1、安装</h3>
+<pre><code>npm install tianshu -g
+</code></pre>
+
+<h3>2、使用</h3>
+<blockquote>
+<p>首先参考<code>demo/</code>目录，使用<code>markdown</code>编写一些章节文件（位于<code>demo/section/</code>），并使用<code>HTML</code>编写好页面模板文件（位于<code>demo/index.tpl</code>）。在模板文件中，使用<code>x-markdown</code>标签引用<code>.md</code>文件，并使用<code>x-index</code>标签指定索引输出位置。</p>
+<p>准备好所有文件后，使用以下命令将模板文件编译为HTML文件。</p>
+</blockquote>
+<pre><code>D:\天书&gt;tianshu index.tpl
+</code></pre>
+
+<blockquote>
+<p>如果希望生成的<code>index.html</code>好看一些，可以在<code>index.tpl</code>里写一些CSS。</p>
+</blockquote>
+<p><br>
+<br></p>
+<h2>方法二 、 JS形成左边树用法</h2>
+<blockquote>
+<p>优点：扩展性强、可折叠 </p>
+<p>缺点：需要引用js css 不方便 繁琐</p>
+</blockquote>
+<h2></h2>
+<h3>1、在选项 &gt; 高级 &gt; HTML Head 编辑器 中加入以下代码：</h3>
+<pre><code>    &lt;link rel=&quot;stylesheet&quot; href=&quot;E:/MarkDownWorkspace/common/css/zTreeStyle/zTreeStyle.css&quot; type=&quot;text/css&quot;&gt;
+    &lt;script type=&quot;text/javascript&quot;  src=&quot;E:/MarkDownWorkspace/common/js/jquery-1.11.3.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot;  src=&quot;E:/MarkDownWorkspace/common/js/jquery.ztree.core-3.5.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot;  src=&quot;E:/MarkDownWorkspace/common/js/ztree_toc.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot;  src=&quot;E:/MarkDownWorkspace/common/js/MathJax.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot; &gt;
+        $(document).ready(function(){
+            $('#tree').ztree_toc({
+                is_auto_number:true
+            });
+        });
+    &lt;/script&gt;
+</code></pre>
+
+<blockquote>
+<p>注：MathJax.js 为数学 其他则是树形必要的js，如果有用到其他js，则需要在此引用js</p>
+</blockquote>
+<h3>2、在md 中加入 html 代码如下：</h3>
+<pre><code>&lt;div style=&quot;width:300px;align:left;&quot;&gt;
+  &lt;ul id=&quot;tree&quot; class=&quot;ztree&quot;&gt;&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;margin-left:100px !important;&quot; class='first_part'&gt;
+</code></pre>
+
+<blockquote>
+<p>注：第二个div 不需要结束</p>
+</blockquote>
 
 </body>
 </html>

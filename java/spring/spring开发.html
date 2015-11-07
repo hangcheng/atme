@@ -1,0 +1,708 @@
+<!doctype HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+<title>spring开发</title>
+<style>
+/* RESET
+=============================================================================*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+	blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
+	em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
+	b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
+	details, embed, figure, figcaption, footer, header, hgroup, menu, nav,
+	output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+/* BODY
+=============================================================================*/
+body {
+	font-family: Helvetica, arial, freesans, clean, sans-serif;
+	font-size: 14px;
+	line-height: 1.6;
+	color: #333;
+	background-color: #fff;
+	padding: 0 30px 0 270px;
+	max-width: 960px;
+	margin: 0 auto;
+}
+
+body>*:first-child {
+	margin-top: 0 !important;
+}
+
+body>*:last-child {
+	margin-bottom: 0 !important;
+}
+
+/**********   索引 **********************************/
+nav {
+	font-size: 10pt;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 270px;
+}
+
+nav .menubar {
+	border-bottom: solid 1px #ccc;
+	display: none;
+	height: 48px;
+	line-height: 48px;
+	padding: 0 10px;
+}
+
+nav .button {
+	background: #777;
+	border: 1px solid #333;
+	color: #fff;
+	font-size: 10pt;
+	font-weight: bold;
+	padding: 8px;
+	border-radius: 4px;
+}
+
+nav ul {
+	padding: 0 0 0 10px;
+}
+
+nav ul a {
+	color: #333;
+	text-decoration: none;
+}
+
+nav ul a:hover {
+	text-decoration: underline;
+}
+
+nav li {
+	line-height: 180%;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav .level2 {
+	font-size: 11pt;
+	font-weight: bold;
+}
+
+nav .level3 {
+	padding-left: 1em;
+}
+
+nav .level4 {
+	padding-left: 2em;
+}
+
+nav .level5 {
+	padding-left: 4em;
+}
+
+nav .level6 {
+	padding-left: 8em;
+}
+
+header {
+	text-align: center;
+}
+
+/* BLOCKS
+=============================================================================*/
+p, blockquote, ul, ol, dl, table, pre {
+	margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+h1, h2, h3, h4, h5, h6 {
+	margin: 20px 0 10px;
+	padding: 0;
+	font-weight: bold;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt,
+	h5 code, h6 tt, h6 code {
+	font-size: inherit;
+}
+
+h1 {
+	font-size: 28px;
+	color: #000;
+}
+
+h2 {
+	font-size: 24px;
+	border-bottom: 1px solid #ccc;
+	color: #000;
+}
+
+h3 {
+	font-size: 18px;
+}
+
+h4 {
+	font-size: 16px;
+}
+
+h5 {
+	font-size: 14px;
+}
+
+h6 {
+	color: #777;
+	font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child,
+	body>h4:first-child, body>h5:first-child, body>h6:first-child {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4,
+	a:first-child h5, a:first-child h6 {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+	margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+a {
+	color: #4183C4;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+ul, ol {
+	padding-left: 30px;
+}
+
+ul li>:first-child, ol li>:first-child, ul li ul:first-of-type, ol li ol:first-of-type,
+	ul li ol:first-of-type, ol li ul:first-of-type {
+	margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+	margin-bottom: 0;
+}
+
+dl {
+	padding: 0;
+}
+
+dl dt {
+	font-size: 14px;
+	font-weight: bold;
+	font-style: italic;
+	padding: 0;
+	margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+	padding: 0;
+}
+
+dl dt>:first-child {
+	margin-top: 0px;
+}
+
+dl dt>:last-child {
+	margin-bottom: 0px;
+}
+
+dl dd {
+	margin: 0 0 15px;
+	padding: 0 15px;
+}
+
+dl dd>:first-child {
+	margin-top: 0px;
+}
+
+dl dd>:last-child {
+	margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+pre, code, tt {
+	font-size: 12px;
+	font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+	margin: 0 0px;
+	padding: 0px 0px;
+	white-space: nowrap;
+	border: 1px solid #eaeaea;
+	background-color: #f8f8f8;
+	border-radius: 3px;
+}
+
+pre>code {
+	margin: 0;
+	padding: 0;
+	white-space: pre;
+	border: none;
+	background: transparent;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #ccc;
+	font-size: 13px;
+	line-height: 19px;
+	overflow: auto;
+	padding: 6px 10px;
+	border-radius: 3px;
+}
+
+pre code, pre tt {
+	background-color: transparent;
+	border: none;
+}
+
+kbd {
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	background-color: #DDDDDD;
+	background-image: linear-gradient(#F1F1F1, #DDDDDD);
+	background-repeat: repeat-x;
+	border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+	border-image: none;
+	border-radius: 2px 2px 2px 2px;
+	border-style: solid;
+	border-width: 1px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	line-height: 10px;
+	padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+blockquote {
+	border-left: 4px solid #DDD;
+	padding: 0 15px;
+	color: #777;
+}
+
+blockquote>:first-child {
+	margin-top: 0px;
+}
+
+blockquote>:last-child {
+	margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+hr {
+	clear: both;
+	margin: 15px 0;
+	height: 0px;
+	overflow: hidden;
+	border: none;
+	background: transparent;
+	border-bottom: 4px solid #ddd;
+	padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+table th {
+	font-weight: bold;
+}
+
+table th, table td {
+	border: 1px solid #ccc;
+	padding: 6px 13px;
+}
+
+table tr {
+	border-top: 1px solid #ccc;
+	background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+	background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+img {
+	max-width: 100%
+}
+
+/***********  底部 *************************/
+footer {
+	border-top: 1px solid #ccc;
+	font-size: 10pt;
+	margin-top: 4em;
+}
+
+/******************** media **********************************/
+@media ( max-width : 768px) {
+	body {
+		padding: 0 10px 0 300px;
+	}
+	nav {
+		width: 300px;
+	}
+}
+
+@media ( max-width : 480px) {
+	body {
+		padding: 64px 10px 0 10px;
+	}
+	header .banner {
+		display: none;
+	}
+	nav {
+		position: absolute;
+		width: 100%;
+	}
+	nav .menubar {
+		display: block;
+	}
+	nav .banner {
+		float: right;
+	}
+	nav ul {
+		background: #fff;
+		display: none;
+		font-size: 14pt;
+		margin: 0;
+		padding: 0 0 0 8px;
+	}
+	nav .level2 {
+		font-size: 16pt;
+		font-weight: bold;
+	}
+	nav li {
+		line-height: 240%;
+	}
+	.index nav ul {
+		display: block;
+	}
+	.index article {
+		display: none;
+	}
+}
+</style>
+<script>
+  (function (tags) {
+    var i = 0, len = tags.length;
+
+    for (; i < len; ++i) {
+        document.createElement(tags[i]);
+    }
+  }([ 'header', 'nav', 'article', 'footer' ]));
+</script>
+</head>
+<body>
+<header>
+<h1 id="spring-">spring 开发配置</h1>
+
+</header>
+<nav>
+<div class="menubar">
+<a class="button">&#9776;&nbsp;索引</a>
+</div>
+<ul>
+<li class="level2"><a href="#1">1&nbsp;&nbsp;spring dataSource 配置</a></li><li class="level3"><a href="#1.1">1.1&nbsp;&nbsp;配置c3p0属性</a></li><li class="level3"><a href="#1.2">1.2&nbsp;&nbsp;spring datasource 配置</a></li><li class="level4"><a href="#1.2.1">1.2.1&nbsp;&nbsp;spring 读取属性文件</a></li><li class="level4"><a href="#1.2.2">1.2.2&nbsp;&nbsp;cp30数据源配置</a></li><li class="level2"><a href="#2">2&nbsp;&nbsp;springMVC 配置</a></li><li class="level3"><a href="#2.1">2.1&nbsp;&nbsp;springMVC  servlet 配置</a></li><li class="level3"><a href="#2.2">2.2&nbsp;&nbsp;springMVC template 模板配置</a></li></ul>
+
+</nav>
+<article>
+<h2 id="1">1&nbsp;&nbsp;spring dataSource 配置</h2>
+<h3 id="1.1">1.1&nbsp;&nbsp;配置c3p0属性</h3>
+<blockquote>
+<p>c3p0.properties</p>
+</blockquote>
+<pre><code># datasource  oracle
+#datasource.username=publicapp
+#datasource.password=123456
+#datasource.driverClassName=oracle.jdbc.driver.OracleDriver
+#datasource.url=jdbc:oracle:thin:@127.0.0.1:1521:orcl
+
+# datasource mysql
+datasource.username=root
+datasource.password=root
+datasource.driverClassName=com.mysql.jdbc.Driver
+datasource.url=jdbc:mysql://localhost:3306/publicapp?useUnicode=true&amp;characterEncoding=utf-8
+
+#cp30 spring#
+
+#当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3
+c3p0.acquireIncrement=5
+#初始化时获取三个连接，取值应在minPoolSize与maxPoolSize之间。Default: 3
+c3p0.initialPoolSize=3
+#每60秒检查所有连接池中的空闲连接。Default: 0
+c3p0.idleConnectionTestPeriod=60
+#连接池中保留的最小连接数。Default: 15
+c3p0.minPoolSize=2
+#连接池中保留的最大连接数。Default: 15
+c3p0.maxPoolSize=50
+#JDBC的标准参数，用以控制数据源内加载的PreparedStatements数量。但由于预缓存的statements
+# 属于单个connection而不是整个连接池。所以设置这个参数需要考虑到多方面的因素。 
+#如果maxStatements与maxStatementsPerConnection均为0，则缓存被关闭。Default: 0
+c3p0.maxStatements=0
+#c3p0是异步操作的，缓慢的JDBC操作通过帮助进程完成。扩展这些操作可以有效的提升性能  通过多线程实现多个操作同时被执行。Default: 3
+c3p0.numHelperThreads=10
+#最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0
+c3p0.maxIdleTime=60
+#两次连接中间隔时间，单位毫秒。Default: 1000 
+c3p0.acquireRetryDelay=1000
+#定义在从数据库获取新连接失败后重复尝试的次数。Default: 30
+c3p0.acquireRetryAttempts=30
+#获取连接失败将会引起所有等待连接池来获取连接的线程抛出异常。但是数据源仍有效  保留，并在下次调用getConnection()的时候继续尝试获取连接。
+#如果设为true，那么在尝试  获取连接失败后该数据源将申明已断开并永久关闭。Default: false
+c3p0.breakAfterAcquireFailure=false
+#如果设为true那么在取得连接的同时将校验连接的有效性。Default: false
+c3p0.testConnectionOnCheckout=false
+#连接关闭时默认将所有未提交的操作回滚。Default: false
+c3p0.autoCommitOnClose=false
+#当连接池用完时客户端调用getConnection()后等待获取新连接的时间，超时后将抛出  SQLException,如设为0则无限期等待。单位毫秒。Default: 0
+c3p0.checkoutTimeout=100
+
+#[ibatis]
+ibatis.maxRequests=3000
+ibatis.maxSessions=1500
+ibatis.maxTransactions=300</code></pre>
+<h3 id="1.2">1.2&nbsp;&nbsp;spring datasource 配置</h3>
+<blockquote>
+<p>applicationContext-common.xml</p>
+</blockquote>
+<h4 id="1.2.1">1.2.1&nbsp;&nbsp;spring 读取属性文件</h4>
+<pre><code>&lt;bean id=&quot;propertyConfigurer&quot; class=&quot;org.springframework.beans.factory.config.PropertyPlaceholderConfigurer&quot;&gt;
+    &lt;property name=&quot;locations&quot;&gt;
+        &lt;list&gt;
+            &lt;!-- 数据库配置信息 --&gt;
+            &lt;value&gt;classpath:properties/c3p0.properties&lt;/value&gt;
+            &lt;!-- 系统配置信息 --&gt;
+            &lt;value&gt;classpath:properties/config.properties&lt;/value&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;</code></pre>
+<h4 id="1.2.2">1.2.2&nbsp;&nbsp;cp30数据源配置</h4>
+<pre><code>&lt;bean id=&quot;dataSource&quot; class=&quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot; destroy-method=&quot;close&quot;&gt;
+    &lt;property name=&quot;driverClass&quot;&gt;
+        &lt;value&gt;${datasource.driverClassName}&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;jdbcUrl&quot;&gt;
+        &lt;value&gt;${datasource.url}&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;user&quot;&gt;
+        &lt;value&gt;${datasource.username}&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property name=&quot;password&quot;&gt;
+        &lt;value&gt;${datasource.password}&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;!--初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3 --&gt;
+    &lt;property name=&quot;initialPoolSize&quot;&gt;
+        &lt;value&gt;${c3p0.initialPoolSize}&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;!--连接池中保留的最小连接数。--&gt;
+    &lt;property name=&quot;minPoolSize&quot;&gt;
+        &lt;value&gt;${c3p0.minPoolSize}&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;!--连接池中保留的最大连接数。Default: 15 --&gt;
+    &lt;property name=&quot;maxPoolSize&quot;&gt;
+        &lt;value&gt;${c3p0.maxPoolSize}&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;!--最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 --&gt;
+    &lt;property name=&quot;maxIdleTime&quot;&gt;
+        &lt;value&gt;${c3p0.maxIdleTime}&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 --&gt;
+    &lt;property name=&quot;acquireIncrement&quot;&gt;
+        &lt;value&gt;${c3p0.acquireIncrement}&lt;/value&gt;
+    &lt;/property&gt;        
+    &lt;!--
+            JDBC的标准参数，用以控制数据源内加载的PreparedStatements数量。但由于预缓存的statements
+            属于单个connection而不是整个连接池。所以设置这个参数需要考虑到多方面的因素。
+            如果maxStatements与maxStatementsPerConnection均为0，则缓存被关闭。Default: 0
+        --&gt;
+    &lt;property name=&quot;maxStatements&quot;&gt;
+        &lt;value&gt;${c3p0.maxStatements}&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;!--每60秒检查所有连接池中的空闲连接。Default: 0 --&gt;
+    &lt;property name=&quot;idleConnectionTestPeriod&quot;&gt;
+        &lt;value&gt;${c3p0.idleConnectionTestPeriod}&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;!--两次连接中间隔时间，单位毫秒，默认为1000 --&gt;
+    &lt;property name=&quot;acquireRetryDelay&quot;&gt;
+        &lt;value&gt;${c3p0.acquireRetryDelay}&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;!--定义在从数据库获取新连接失败后重复尝试的次数。Default: 30 --&gt;
+    &lt;property name=&quot;acquireRetryAttempts&quot;&gt;
+        &lt;value&gt;${c3p0.acquireRetryAttempts}&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;!--
+            获取连接失败将会引起所有等待连接池来获取连接的线程抛出异常。但是数据源仍有效
+            保留，并在下次调用getConnection()的时候继续尝试获取连接。如果设为true，那么在尝试
+            获取连接失败后该数据源将申明已断开并永久关闭。Default: false
+        --&gt;
+    &lt;property name=&quot;breakAfterAcquireFailure&quot;&gt;
+        &lt;value&gt;${c3p0.breakAfterAcquireFailure}&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;!--
+            因性能消耗大请只在需要的时候使用它。如果设为true那么在每个connection提交的
+            时候都将校验其有效性。建议使用idleConnectionTestPeriod或automaticTestTable
+            等方法来提升连接测试的性能。Default: false
+        --&gt;
+    &lt;property name=&quot;testConnectionOnCheckout&quot;&gt;
+        &lt;value&gt;${c3p0.testConnectionOnCheckout}&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;!--
+            c3p0是异步操作的，缓慢的JDBC操作通过帮助进程完成。扩展这些操作可以有效的提升性能
+            通过多线程实现多个操作同时被执行。Default: 3
+        --&gt;
+    &lt;property name=&quot;numHelperThreads&quot;&gt;
+        &lt;value&gt;${c3p0.numHelperThreads}&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;</code></pre>
+
+<h2 id="2">2&nbsp;&nbsp;springMVC 配置</h2>
+<h3 id="2.1">2.1&nbsp;&nbsp;springMVC  servlet 配置</h3>
+<blockquote>
+<p>applicationContext-springMVC.xml</p>
+</blockquote>
+<pre><code>&lt;!-- 告诉springmvc,springmvc相关的bean中使用注解来进行表示 --&gt;
+&lt;context:annotation-config /&gt;
+&lt;!-- 告诉springmvc对指定包进行扫描，并创建其中的javaBean并注入到spring容器中 --&gt;
+&lt;context:component-scan base-package=&quot;com.web.app.*&quot; /&gt;
+&lt;!-- 启动springmvc的注解映射功能 --&gt;
+&lt;bean class=&quot;org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping&quot;
+    p:order=&quot;1&quot;&gt;
+&lt;/bean&gt;
+&lt;!-- 启动Spring JAVA BEAN的注解功能的映射,对标注@Autowired的Bean进行自动注入   --&gt;
+&lt;bean class=&quot;org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor&quot;/&gt;
+&lt;!-- 启动Spring MVC的注解功能，完成请求和注解POJO --&gt;
+&lt;bean class=&quot;org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter&quot;&gt;
+    &lt;property name=&quot;messageConverters&quot;&gt;
+        &lt;list&gt;
+            &lt;ref bean=&quot;stringHttpMessageConverter&quot; /&gt;
+            &lt;ref bean=&quot;jsonHttpMessageConverter&quot; /&gt;
+            &lt;ref bean=&quot;marshallingHttpMessageConverter&quot; /&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;bean id=&quot;stringHttpMessageConverter&quot; class=&quot;org.springframework.http.converter.StringHttpMessageConverter&quot; /&gt; 
+
+&lt;bean id=&quot;jsonHttpMessageConverter&quot; class=&quot;org.springframework.http.converter.json.MappingJacksonHttpMessageConverter&quot; /&gt;
+
+&lt;bean id=&quot;marshallingHttpMessageConverter&quot; class=&quot;org.springframework.http.converter.xml.MarshallingHttpMessageConverter&quot;&gt;
+    &lt;property name=&quot;supportedMediaTypes&quot; value=&quot;application/xml&quot;&gt;&lt;/property&gt;
+&lt;/bean&gt;
+
+&lt;!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL--&gt;    
+&lt;mvc:default-servlet-handler/&gt;
+
+&lt;!-- 静态资源映射 --&gt;
+&lt;mvc:resources mapping=&quot;/images/**&quot; location=&quot;/images/&quot; cache-period=&quot;31536000&quot;/&gt;
+&lt;mvc:resources mapping=&quot;/css/**&quot; location=&quot;/css/&quot; cache-period=&quot;31536000&quot;/&gt;
+&lt;mvc:resources mapping=&quot;/js/jslib/**&quot; location=&quot;/js/jslib/&quot; cache-period=&quot;31536000&quot;/&gt;
+
+&lt;!-- 定义无需Controller的url&lt;-&gt;view直接映射
+&lt;mvc:view-controller path=&quot;/&quot; view-name=&quot;/system/index&quot;/&gt; --&gt;
+
+&lt;!-- Spring国际化 --&gt;  
+&lt;bean id=&quot;messageSource&quot; class=&quot;com.web.app.core.common.context.AppMessage&quot;
+    p:cacheSeconds=&quot;1&quot;&gt;
+    &lt;property name=&quot;basenames&quot;&gt;  
+        &lt;list&gt;  
+            &lt;value&gt;classpath:properties/message&lt;/value&gt;
+        &lt;/list&gt;  
+    &lt;/property&gt; 
+    &lt;property name=&quot;defaultEncoding&quot; value=&quot;UTF-8&quot;/&gt;
+&lt;/bean&gt;
+
+&lt;!-- 使用spring multipartRequest 上传文件--&gt;
+&lt;bean id=&quot;multipartResolver&quot; class=&quot;org.springframework.web.multipart.commons.CommonsMultipartResolver&quot; p:defaultEncoding=&quot;utf-8&quot;/&gt;</code></pre>
+<h3 id="2.2">2.2&nbsp;&nbsp;springMVC template 模板配置</h3>
+<blockquote>
+<p>applicationContext-template.xml</p>
+</blockquote>
+<pre><code>&lt;!--** *配置系统里面可能会用到的模板 *1.freemarker 2.velocity ****--&gt;
+&lt;!--&lt;bean id=&quot;velocityViewResolver&quot;
+    class=&quot;org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver&quot;
+    p:suffix=&quot;.html&quot; 
+    p:prefix=&quot;&quot; 
+    p:contentType=&quot;text/html;charset=utf-8&quot;
+    p:exposeRequestAttributes=&quot;true&quot; 
+    p:exposeSessionAttributes=&quot;true&quot;&gt;
+    &lt;property name=&quot;viewClass&quot; value=&quot;org.springframework.web.servlet.view.freemarker.FreeMarkerView&quot; /&gt;
+    &lt;property name=&quot;requestContextAttribute&quot; value=&quot;req&quot; /&gt;
+    &lt;property name=&quot;exposeSpringMacroHelpers&quot; value=&quot;true&quot; /&gt;
+&lt;/bean&gt;--&gt;
+&lt;!-- freemarker config --&gt;
+&lt;!--&lt;bean id=&quot;freeMarkerConfigurer&quot;
+        class=&quot;org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer&quot;&gt;
+        &lt;property name=&quot;templateLoaderPath&quot; value=&quot;/views/&quot; /&gt;
+        &lt;property name=&quot;freemarkerSettings&quot;&gt;
+            &lt;props&gt;
+                &lt;prop key=&quot;template_update_delay&quot;&gt;10&lt;/prop&gt;
+                &lt;prop key=&quot;locale&quot;&gt;zh_CN&lt;/prop&gt;
+                &lt;prop key=&quot;default_encoding&quot;&gt;UTF-8&lt;/prop&gt;
+                &lt;prop key=&quot;datetime_format&quot;&gt;yyyy-MM-dd HH:mm:ss&lt;/prop&gt;
+                &lt;prop key=&quot;date_format&quot;&gt;yyyy-MM-dd&lt;/prop&gt;
+                &lt;prop key=&quot;number_format&quot;&gt;#.##&lt;/prop&gt;
+            &lt;/props&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;--&gt;
+&lt;!-- velocity视图解析器 p:toolboxConfigLocation=&quot;classpath:velocity/velocity-toolbox.xml&quot; --&gt;
+&lt;bean id=&quot;velocityViewResolver&quot;
+    class=&quot;org.springframework.web.servlet.view.velocity.VelocityViewResolver&quot;
+    p:suffix=&quot;.html&quot; 
+    p:prefix=&quot;&quot; 
+    p:contentType=&quot;text/html;charset=utf-8&quot;
+    p:dateToolAttribute=&quot;dateTool&quot; 
+    p:numberToolAttribute=&quot;numberTool&quot;
+    p:exposeRequestAttributes=&quot;true&quot; 
+    p:exposeSessionAttributes=&quot;true&quot;&gt;
+    &lt;property name=&quot;requestContextAttribute&quot; value=&quot;req&quot; /&gt;
+    &lt;property name=&quot;exposeSpringMacroHelpers&quot; value=&quot;true&quot; /&gt;
+&lt;/bean&gt;
+
+&lt;!-- Spring+Velocity集成配置 --&gt;
+&lt;bean id=&quot;velocityConfigurer&quot;
+    class=&quot;org.springframework.web.servlet.view.velocity.VelocityConfigurer&quot;
+    p:resourceLoaderPath=&quot;/views/&quot;&gt;
+    &lt;property name=&quot;velocityProperties&quot;&gt;
+        &lt;props&gt;
+            &lt;prop key=&quot;contentType&quot;&gt;text/html; charset=utf-8&lt;/prop&gt;
+            &lt;prop key=&quot;input.encoding&quot;&gt;utf-8&lt;/prop&gt;
+            &lt;prop key=&quot;output.encoding&quot;&gt;utf-8&lt;/prop&gt;
+        &lt;/props&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;</code></pre>
+
+</article>
+<footer>
+<p>© 2015-2016 杭杭工作室, Inc.</p>
+
+</footer>
+</body>
+</html>

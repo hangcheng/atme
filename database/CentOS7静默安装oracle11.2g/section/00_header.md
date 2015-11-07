@@ -1,0 +1,1 @@
+#CentOS7静默安装oracle11.2g
