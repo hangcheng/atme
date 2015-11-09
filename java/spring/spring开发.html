@@ -430,7 +430,7 @@ footer {
 <a class="button">&#9776;&nbsp;索引</a>
 </div>
 <ul>
-<li class="level2"><a href="#1">1&nbsp;&nbsp;spring dataSource 配置</a></li><li class="level3"><a href="#1.1">1.1&nbsp;&nbsp;配置c3p0属性</a></li><li class="level3"><a href="#1.2">1.2&nbsp;&nbsp;spring datasource 配置</a></li><li class="level4"><a href="#1.2.1">1.2.1&nbsp;&nbsp;spring 读取属性文件</a></li><li class="level4"><a href="#1.2.2">1.2.2&nbsp;&nbsp;cp30数据源配置</a></li><li class="level2"><a href="#2">2&nbsp;&nbsp;springMVC 配置</a></li><li class="level3"><a href="#2.1">2.1&nbsp;&nbsp;springMVC  servlet 配置</a></li><li class="level3"><a href="#2.2">2.2&nbsp;&nbsp;springMVC template 模板配置</a></li></ul>
+<li class="level2"><a href="#1">1&nbsp;&nbsp;spring dataSource 配置</a></li><li class="level3"><a href="#1.1">1.1&nbsp;&nbsp;配置c3p0属性</a></li><li class="level3"><a href="#1.2">1.2&nbsp;&nbsp;spring datasource 配置</a></li><li class="level4"><a href="#1.2.1">1.2.1&nbsp;&nbsp;spring 读取属性文件</a></li><li class="level4"><a href="#1.2.2">1.2.2&nbsp;&nbsp;cp30数据源配置</a></li><li class="level2"><a href="#2">2&nbsp;&nbsp;springMVC 配置</a></li><li class="level3"><a href="#2.1">2.1&nbsp;&nbsp;springMVC  servlet 配置</a></li><li class="level3"><a href="#2.2">2.2&nbsp;&nbsp;springMVC template 模板配置</a></li><li class="level3"><a href="#2.3">2.3&nbsp;&nbsp;spring vm 与 ftl 宏定义</a></li></ul>
 
 </nav>
 <article>
@@ -672,6 +672,8 @@ ibatis.maxTransactions=300</code></pre>
             &lt;/props&gt;
         &lt;/property&gt;
     &lt;/bean&gt;--&gt;
+
+
 &lt;!-- velocity视图解析器 p:toolboxConfigLocation=&quot;classpath:velocity/velocity-toolbox.xml&quot; --&gt;
 &lt;bean id=&quot;velocityViewResolver&quot;
     class=&quot;org.springframework.web.servlet.view.velocity.VelocityViewResolver&quot;
@@ -698,6 +700,91 @@ ibatis.maxTransactions=300</code></pre>
         &lt;/props&gt;
     &lt;/property&gt;
 &lt;/bean&gt;</code></pre>
+<h3 id="2.3">2.3&nbsp;&nbsp;spring vm 与 ftl 宏定义</h3>
+<blockquote>
+<p><code>spring</code> 默认定义 <code>velocity</code> 与 <code>freeMark</code> 中的宏 可以直接使用<br><code>FreeMarker</code>宏必须导入到一个名称空间，这里推荐你定义为<code>spring</code>空间 即<code>&lt;#import &quot;spring.ftl&quot;  as spring /&gt;</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>macro</th>
+<th>VTL definition</th>
+<th>FTL definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bind（绑定）</td>
+<td>#springBind(&quot;command.name&quot;)</td>
+<td>@spring.bind&quot;command.name&quot; /&gt;</td>
+</tr>
+<tr>
+<td>BindEscaped(绑定 可以接受布尔型参数)</td>
+<td>#springBindEscaped</td>
+<td>&lt;@spring.bindEscaped&gt;</td>
+</tr>
+<tr>
+<td>message（输出一个根据code参数选择的资源绑定字符串）</td>
+<td>#springMessage($code)</td>
+<td>&lt;@spring.message code/&gt;</td>
+</tr>
+<tr>
+<td>messageText （输出一个根据code参数选择的资源绑定字符串，找不到的话输出default参数的值）</td>
+<td>#springMessageText($code $text)</td>
+<td>&lt;@spring.messageText code, text/&gt;</td>
+</tr>
+<tr>
+<td>url （在URL相对路径前面添加应用上下文根路径application context root）</td>
+<td>#springUrl($relativeUrl)</td>
+<td>&lt;@spring.url relativeUrl/&gt;</td>
+</tr>
+<tr>
+<td>formInput （标准表单输入域）</td>
+<td>#springFormInput($path $attributes)</td>
+<td>&lt;@spring.formInput path, attributes, fieldType/&gt;</td>
+</tr>
+<tr>
+<td>formHiddenInput * （表单隐藏输入域）</td>
+<td>#springFormHiddenInput($path $attributes)</td>
+<td>&lt;@spring.formHiddenInput path, attributes/&gt;</td>
+</tr>
+<tr>
+<td>formPasswordInput *（标准表单密码输入域；注意不会为这种类型的输入域装配数据）</td>
+<td>#springFormPasswordInput($path $attributes)</td>
+<td>&lt;@spring.formPasswordInput path, attributes/&gt;</td>
+</tr>
+<tr>
+<td>formTextarea （大型文本（自由格式）输入域）</td>
+<td>#springFormTextarea($path $attributes)</td>
+<td>&lt;@spring.formTextarea path, attributes/&gt;</td>
+</tr>
+<tr>
+<td>formSingleSelect （单选列表框）</td>
+<td>#springFormSingleSelect( $path $options $attributes)</td>
+<td>&lt;@spring.formSingleSelect path, options, attributes/&gt;</td>
+</tr>
+<tr>
+<td>formMultiSelect （多选列表框）</td>
+<td>#springFormMultiSelect($path $options $attributes)</td>
+<td>&lt;@spring.formMultiSelect path, options, attributes/&gt;</td>
+</tr>
+<tr>
+<td>formRadioButtons （单选框）</td>
+<td>#springFormRadioButtons($path $options $separator $attributes)</td>
+<td>&lt;@spring.formRadioButtons path, options separator, attributes/&gt;</td>
+</tr>
+<tr>
+<td>formCheckboxes （复选框）</td>
+<td>#springFormCheckboxes($path $options $separator $attributes)</td>
+<td>&lt;@spring.formCheckboxes path, options, separator, attributes/&gt;</td>
+</tr>
+<tr>
+<td>showErrors （简化针对所绑定输入域的校验错误信息输出）</td>
+<td>#springShowErrors($separator $classOrStyle)</td>
+<td>&lt;@spring.showErrors separator, classOrStyle/&gt;</td>
+</tr>
+</tbody>
+</table>
 
 </article>
 <footer>

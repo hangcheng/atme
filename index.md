@@ -3,21 +3,24 @@
 		max-width: 100% !important;
 		padding:0 20px 10px !important;
 	}
+	h2{font-size: 18px;}
 	a {padding-left:10px;}
 </style>
 
 Maven
 -
 <a href="http://mvnrepository.com" target="view_window">Maven 仓库</a>
-<a href="maven/maven开发.html" target="view_window">maven 设置</a>
+<a href="maven/maven开发.html" target="view_window">maven 配置</a>
 <a href="maven/pom.xml详解.html" target="view_window">pom.xml 详解</a>
 
 
 
-Java
+Java & Web
 -
-<a href="java/spring/spring开发.html" target="view_window">Spring 开发</a>
-<a href="java/mybatis/mybatis开发.html" target="view_window">Mybatis 开发</a>
+<a href="java/spring/spring开发.html" target="view_window">Spring</a>
+<a href="java/mybatis/mybatis开发.html" target="view_window">Mybatis</a>
+<a href="java/web/velocity/index.html" target="view_window">velocity</a>
+<a href="java/web/freemark/index.html" target="view_window">freeMark</a>
 <a href="java/cron/cron表达式.html" target="view_window">cron表达式</a>
 <a href="java/CentOs7静默安装Jdk7.html" target="view_window">JDK 安装</a>
 
@@ -45,15 +48,28 @@ Nodejs
 
 Database
 -
+<a href="database/oracle/index.html" target="view_window">Oracle</a>
+<a href="database/mysql/index.html" target="view_window">Mysql</a>
 <a href="database/CentOS7静默安装oracle11.2g/CentOS7静默安装oracle11.2g.html" target="view_window">CentOS7静默安装oracle11.2g</a>
 
 
-
-Linux 
+Linux  ┋    App Server
 -
-<a href="Linux/index.html" target="view_window">Linux 学习</a>
+<a href="Linux/index.html" target="view_window">Linux</a>
+<a href="appserver/tomcat/index.html" target="view_window">Tomcat</a>
+<a href="appserver/jboss/index.html" target="view_window">Jboss</a>
+<a href="appserver/weblogic/index.html" target="view_window">weblogic</a>
 
-代码托管  |    Markdown
+
+
+Mobile App
+-
+<a href="phone/html5/index.html" target="view_window">HTML5</a>
+
+
+
+
+代码托管  ┋    Markdown
 -
 
 <a href="https://github.com" target="view_window">github</a>

@@ -90,6 +90,8 @@
 			</props>
 		</property>
 	</bean>-->
+
+
 <!-- velocity视图解析器 p:toolboxConfigLocation="classpath:velocity/velocity-toolbox.xml" -->
 <bean id="velocityViewResolver"
 	class="org.springframework.web.servlet.view.velocity.VelocityViewResolver"
@@ -118,3 +120,25 @@
 </bean>
 ~~~~~
 
+
+
+### spring vm 与 ftl 宏定义
+>`spring` 默认定义 `velocity` 与 `freeMark` 中的宏 可以直接使用   
+>`FreeMarker`宏必须导入到一个名称空间，这里推荐你定义为`spring`空间 即`<#import "spring.ftl"  as spring />`
+
+| macro |VTL definition  | FTL definition |
+|--|--|--|
+|Bind（绑定）|#springBind("command.name")|@spring.bind"command.name" />|
+|BindEscaped(绑定 可以接受布尔型参数)|#springBindEscaped | <@spring.bindEscaped>|
+|message（输出一个根据code参数选择的资源绑定字符串）|#springMessage($code)|<@spring.message code/>|
+|messageText （输出一个根据code参数选择的资源绑定字符串，找不到的话输出default参数的值）|#springMessageText($code $text) |<@spring.messageText code, text/>|
+|url （在URL相对路径前面添加应用上下文根路径application context root）|#springUrl($relativeUrl)|<@spring.url relativeUrl/>|
+|formInput （标准表单输入域）|#springFormInput($path $attributes)|<@spring.formInput path, attributes, fieldType/>|
+|formHiddenInput * （表单隐藏输入域）|#springFormHiddenInput($path $attributes)|<@spring.formHiddenInput path, attributes/>|
+|formPasswordInput *（标准表单密码输入域；注意不会为这种类型的输入域装配数据）|#springFormPasswordInput($path $attributes)|<@spring.formPasswordInput path, attributes/>|
+|formTextarea （大型文本（自由格式）输入域）|#springFormTextarea($path $attributes)|<@spring.formTextarea path, attributes/>|
+|formSingleSelect （单选列表框）|#springFormSingleSelect( $path $options $attributes)|<@spring.formSingleSelect path, options, attributes/>|
+|formMultiSelect （多选列表框）|#springFormMultiSelect($path $options $attributes)|<@spring.formMultiSelect path, options, attributes/>|
+|formRadioButtons （单选框）|#springFormRadioButtons($path $options $separator $attributes)|<@spring.formRadioButtons path, options separator, attributes/>|
+|formCheckboxes （复选框）|#springFormCheckboxes($path $options $separator $attributes)|<@spring.formCheckboxes path, options, separator, attributes/>|
+|showErrors （简化针对所绑定输入域的校验错误信息输出）|#springShowErrors($separator $classOrStyle)|<@spring.showErrors separator, classOrStyle/>|
