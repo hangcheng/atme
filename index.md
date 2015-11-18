@@ -6,7 +6,7 @@
 	h2{font-size: 18px;}
 	a {padding-left:10px;}
 </style>
-
+hfx19860815
 Maven
 -
 <a href="http://mvnrepository.com" target="view_window">Maven 仓库</a>
@@ -20,7 +20,8 @@ Java & Web
 <a href="java/spring/spring开发.html" target="view_window">Spring</a>
 <a href="java/mybatis/mybatis开发.html" target="view_window">Mybatis</a>
 <a href="java/web/velocity/index.html" target="view_window">velocity</a>
-<a href="java/web/freemark/index.html" target="view_window">freeMark</a>
+<a href="java/web/freemark/index.html" target="view_window">freeMarker</a>
+<a href="java/web/FreeMarker_2.3.23_Manual_zh_CN/index.html" target="view_window">FreeMarker手册</a>
 <a href="java/cron/cron表达式.html" target="view_window">cron表达式</a>
 <a href="java/CentOs7静默安装Jdk7.html" target="view_window">JDK 安装</a>
 
