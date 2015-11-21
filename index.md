@@ -6,7 +6,7 @@
 	h2{font-size: 18px;}
 	a {padding-left:10px;}
 </style>
-hfx19860815
+
 Maven
 -
 <a href="http://mvnrepository.com" target="view_window">Maven 仓库</a>
