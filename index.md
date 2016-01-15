@@ -7,12 +7,12 @@
 	a {padding-left:10px;}
 </style>
 
-Maven
+Maven  ┋    Git
 -
 <a href="http://mvnrepository.com" target="view_window">Maven 仓库</a>
 <a href="maven/maven开发.html" target="view_window">maven 配置</a>
 <a href="maven/pom.xml详解.html" target="view_window">pom.xml 详解</a>
-
+<a href="git/index.html" target="view_window">Git 学习</a>
 
 
 Java & Web
@@ -72,7 +72,6 @@ Mobile App
 
 代码托管  ┋    Markdown
 -
-
 <a href="https://github.com" target="view_window">github</a>
 <a href="http://git.oschina.net" target="view_window">oschina(git)</a>
 <a href="http://code.taobao.org" target="view_window">淘宝code(SVN)</a>

@@ -1,0 +1,536 @@
+<!doctype HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+<title>标题</title>
+<style>
+/* RESET
+=============================================================================*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+	blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
+	em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
+	b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
+	details, embed, figure, figcaption, footer, header, hgroup, menu, nav,
+	output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+/* BODY
+=============================================================================*/
+body {
+	font-family: Helvetica, arial, freesans, clean, sans-serif;
+	font-size: 14px;
+	line-height: 1.6;
+	color: #333;
+	background-color: #fff;
+	padding: 0 30px 0 270px;
+	max-width: 960px;
+	margin: 0 auto;
+}
+
+body>*:first-child {
+	margin-top: 0 !important;
+}
+
+body>*:last-child {
+	margin-bottom: 0 !important;
+}
+
+/**********   索引 **********************************/
+nav {
+	font-size: 10pt;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 270px;
+}
+
+nav .menubar {
+	border-bottom: solid 1px #ccc;
+	display: none;
+	height: 48px;
+	line-height: 48px;
+	padding: 0 10px;
+}
+
+nav .button {
+	background: #777;
+	border: 1px solid #333;
+	color: #fff;
+	font-size: 10pt;
+	font-weight: bold;
+	padding: 8px;
+	border-radius: 4px;
+}
+
+nav ul {
+	padding: 0 0 0 10px;
+}
+
+nav ul a {
+	color: #333;
+	text-decoration: none;
+}
+
+nav ul a:hover {
+	text-decoration: underline;
+}
+
+nav li {
+	line-height: 180%;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav .level2 {
+	font-size: 11pt;
+	font-weight: bold;
+}
+
+nav .level3 {
+	padding-left: 1em;
+}
+
+nav .level4 {
+	padding-left: 2em;
+}
+
+nav .level5 {
+	padding-left: 4em;
+}
+
+nav .level6 {
+	padding-left: 8em;
+}
+
+header {
+	text-align: center;
+}
+
+/* BLOCKS
+=============================================================================*/
+p, blockquote, ul, ol, dl, table, pre {
+	margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+h1, h2, h3, h4, h5, h6 {
+	margin: 20px 0 10px;
+	padding: 0;
+	font-weight: bold;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt,
+	h5 code, h6 tt, h6 code {
+	font-size: inherit;
+}
+
+h1 {
+	font-size: 28px;
+	color: #000;
+}
+
+h2 {
+	font-size: 24px;
+	border-bottom: 1px solid #ccc;
+	color: #000;
+}
+
+h3 {
+	font-size: 18px;
+}
+
+h4 {
+	font-size: 16px;
+}
+
+h5 {
+	font-size: 14px;
+}
+
+h6 {
+	color: #777;
+	font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child,
+	body>h4:first-child, body>h5:first-child, body>h6:first-child {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4,
+	a:first-child h5, a:first-child h6 {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+	margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+a {
+	color: #4183C4;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+ul, ol {
+	padding-left: 30px;
+}
+
+ul li>:first-child, ol li>:first-child, ul li ul:first-of-type, ol li ol:first-of-type,
+	ul li ol:first-of-type, ol li ul:first-of-type {
+	margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+	margin-bottom: 0;
+}
+
+dl {
+	padding: 0;
+}
+
+dl dt {
+	font-size: 14px;
+	font-weight: bold;
+	font-style: italic;
+	padding: 0;
+	margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+	padding: 0;
+}
+
+dl dt>:first-child {
+	margin-top: 0px;
+}
+
+dl dt>:last-child {
+	margin-bottom: 0px;
+}
+
+dl dd {
+	margin: 0 0 15px;
+	padding: 0 15px;
+}
+
+dl dd>:first-child {
+	margin-top: 0px;
+}
+
+dl dd>:last-child {
+	margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+pre, code, tt {
+	font-size: 12px;
+	font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+	margin: 0 0px;
+	padding: 0px 0px;
+	white-space: nowrap;
+	border: 1px solid #eaeaea;
+	background-color: #f8f8f8;
+	border-radius: 3px;
+}
+
+pre>code {
+	margin: 0;
+	padding: 0;
+	white-space: pre;
+	border: none;
+	background: transparent;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #ccc;
+	font-size: 13px;
+	line-height: 19px;
+	overflow: auto;
+	padding: 6px 10px;
+	border-radius: 3px;
+}
+
+pre code, pre tt {
+	background-color: transparent;
+	border: none;
+}
+
+kbd {
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	background-color: #DDDDDD;
+	background-image: linear-gradient(#F1F1F1, #DDDDDD);
+	background-repeat: repeat-x;
+	border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+	border-image: none;
+	border-radius: 2px 2px 2px 2px;
+	border-style: solid;
+	border-width: 1px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	line-height: 10px;
+	padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+blockquote {
+	border-left: 4px solid #DDD;
+	padding: 0 15px;
+	color: #777;
+}
+
+blockquote>:first-child {
+	margin-top: 0px;
+}
+
+blockquote>:last-child {
+	margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+hr {
+	clear: both;
+	margin: 15px 0;
+	height: 0px;
+	overflow: hidden;
+	border: none;
+	background: transparent;
+	border-bottom: 4px solid #ddd;
+	padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+table th {
+	font-weight: bold;
+}
+
+table th, table td {
+	border: 1px solid #ccc;
+	padding: 6px 13px;
+}
+
+table tr {
+	border-top: 1px solid #ccc;
+	background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+	background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+img {
+	max-width: 100%
+}
+
+/***********  底部 *************************/
+footer {
+	border-top: 1px solid #ccc;
+	font-size: 10pt;
+	margin-top: 4em;
+}
+
+/******************** media **********************************/
+@media ( max-width : 768px) {
+	body {
+		padding: 0 10px 0 300px;
+	}
+	nav {
+		width: 300px;
+	}
+}
+
+@media ( max-width : 480px) {
+	body {
+		padding: 64px 10px 0 10px;
+	}
+	header .banner {
+		display: none;
+	}
+	nav {
+		position: absolute;
+		width: 100%;
+	}
+	nav .menubar {
+		display: block;
+	}
+	nav .banner {
+		float: right;
+	}
+	nav ul {
+		background: #fff;
+		display: none;
+		font-size: 14pt;
+		margin: 0;
+		padding: 0 0 0 8px;
+	}
+	nav .level2 {
+		font-size: 16pt;
+		font-weight: bold;
+	}
+	nav li {
+		line-height: 240%;
+	}
+	.index nav ul {
+		display: block;
+	}
+	.index article {
+		display: none;
+	}
+}
+</style>
+<script>
+  (function (tags) {
+    var i = 0, len = tags.length;
+
+    for (; i < len; ++i) {
+        document.createElement(tags[i]);
+    }
+  }([ 'header', 'nav', 'article', 'footer' ]));
+</script>
+</head>
+<body>
+<header>
+<h1 id="git">Git</h1>
+
+</header>
+<nav>
+<div class="menubar">
+<a class="button">&#9776;&nbsp;索引</a>
+</div>
+<ul>
+<li class="level2"><a href="#1">1&nbsp;&nbsp;简易指南</a></li><li class="level3"><a href="#1.1">1.1&nbsp;&nbsp;安装</a></li><li class="level3"><a href="#1.2">1.2&nbsp;&nbsp;使用</a></li><li class="level4"><a href="#1.2.1">1.2.1&nbsp;&nbsp;创建仓库</a></li><li class="level4"><a href="#1.2.2">1.2.2&nbsp;&nbsp;检出（克隆）</a></li><li class="level4"><a href="#1.2.3">1.2.3&nbsp;&nbsp;添加与提交</a></li><li class="level4"><a href="#1.2.4">1.2.4&nbsp;&nbsp;推送改动</a></li><li class="level4"><a href="#1.2.5">1.2.5&nbsp;&nbsp;分支</a></li><li class="level4"><a href="#1.2.6">1.2.6&nbsp;&nbsp;更新与合并</a></li><li class="level4"><a href="#1.2.7">1.2.7&nbsp;&nbsp;标签</a></li><li class="level4"><a href="#1.2.8">1.2.8&nbsp;&nbsp;替换本地改动</a></li><li class="level4"><a href="#1.2.9">1.2.9&nbsp;&nbsp;小贴士</a></li><li class="level2"><a href="#2">2&nbsp;&nbsp;Git流程</a></li><li class="level3"><a href="#2.1">2.1&nbsp;&nbsp;远程流程</a></li><li class="level3"><a href="#2.2">2.2&nbsp;&nbsp;本地流程</a></li><li class="level2"><a href="#3">3&nbsp;&nbsp;Git常用命令速查</a></li></ul>
+
+</nav>
+<article>
+<h2 id="1">1&nbsp;&nbsp;简易指南</h2>
+<h3 id="1.1">1.1&nbsp;&nbsp;安装</h3>
+<pre><code>环境变量配置：
+GIT_HOME
+D:\Program Files\Git
+
+cmd下输入
+git --version
+检测安装是否成功</code></pre>
+<h3 id="1.2">1.2&nbsp;&nbsp;使用</h3>
+<h4 id="1.2.1">1.2.1&nbsp;&nbsp;创建仓库</h4>
+<pre><code>创建文件夹，打开，然后执行 
+      git init
+以创建新的 git 仓库。</code></pre>
+<h4 id="1.2.2">1.2.2&nbsp;&nbsp;检出（克隆）</h4>
+<pre><code>执行如下命令以创建一个本地仓库的克隆版本：
+git clone /path/to/repository 
+如果是远端服务器上的仓库，你的命令会是这个样子：
+git clone username@host:/path/to/repository</code></pre>
+<h4 id="1.2.3">1.2.3&nbsp;&nbsp;添加与提交</h4>
+<pre><code>你可以计划改动（把它们添加到缓存区），使用如下命令：
+git add &lt;filename&gt;
+git add *
+这是 git 基本工作流程的第一步；使用如下命令以实际提交改动：
+git commit -m &quot;代码提交信息&quot;
+现在，你的改动已经提交到了 HEAD，但是还没到你的远端仓库。</code></pre>
+<h4 id="1.2.4">1.2.4&nbsp;&nbsp;推送改动</h4>
+<pre><code>你的改动现在已经在本地仓库的 HEAD 中了。执行如下命令以将这些改动提交到远端仓库：
+git push origin master
+可以把 master 换成你想要推送的任何分支。 
+
+如果你还没有克隆现有仓库，并欲将你的仓库连接到某个远程服务器，你可以使用如下命令添加：
+git remote add origin &lt;server&gt;
+如此你就能够将你的改动推送到所添加的服务器上去了.</code></pre>
+<h4 id="1.2.5">1.2.5&nbsp;&nbsp;分支</h4>
+<blockquote>
+<p>分支是用来将特性开发绝缘开来的。在你创建仓库的时候，master 是“默认的”。在其他分支上进行开发，完成后再将它们合并到主分支上。</p>
+</blockquote>
+<p><img src="section/04.jpg" alt=""></p>
+<pre><code>创建一个叫做“feature_x”的分支，并切换过去：
+git checkout -b feature_x
+切换回主分支：
+git checkout master
+再把新建的分支删掉：
+git branch -d feature_x
+除非你将分支推送到远端仓库，不然该分支就是 不为他人所见的：
+git push origin &lt;branch&gt;</code></pre>
+<h4 id="1.2.6">1.2.6&nbsp;&nbsp;更新与合并</h4>
+<pre><code>要更新你的本地仓库至最新改动，执行：
+git pull
+以在你的工作目录中 获取（fetch） 并 合并（merge） 远端的改动。
+要合并其他分支到你的当前分支（例如 master），执行：
+git merge &lt;branch&gt;
+两种情况下，git 都会尝试去自动合并改动。不幸的是，自动合并并非次次都能成功，并可能导致 冲突（conflicts）。 
+这时候就需要你修改这些文件来人肉合并这些 冲突（conflicts） 了。
+改完之后，你需要执行如下命令以将它们标记为合并成功：
+git add &lt;filename&gt;
+在合并改动之前，也可以使用如下命令查看：
+git diff &lt;source_branch&gt; &lt;target_branch&gt;</code></pre>
+<h4 id="1.2.7">1.2.7&nbsp;&nbsp;标签</h4>
+<pre><code>在软件发布时创建标签，是被推荐的。这是个旧有概念，在 SVN 中也有。可以执行如下命令以创建一个叫做 1.0.0 的标签：
+git tag 1.0.0 1b2e1d63ff
+1b2e1d63ff 是你想要标记的提交 ID 的前 10 位字符。使用如下命令获取提交 ID：
+git log
+你也可以用该提交 ID 的少一些的前几位，只要它是唯一的。</code></pre>
+<h4 id="1.2.8">1.2.8&nbsp;&nbsp;替换本地改动</h4>
+<pre><code>假如你做错事（自然，这是不可能的），你可以使用如下命令替换掉本地改动：
+git checkout -- &lt;filename&gt;
+此命令会使用 HEAD 中的最新内容替换掉你的工作目录中的文件。已添加到缓存区的改动，以及新文件，都不受影响。
+
+假如你想要丢弃你所有的本地改动与提交，可以到服务器上获取最新的版本并将你本地主分支指向到它：
+git fetch origin
+git reset --hard origin/master</code></pre>
+<h4 id="1.2.9">1.2.9&nbsp;&nbsp;小贴士</h4>
+<pre><code>内建的图形化 git：
+gitk
+彩色的 git 输出：
+git config color.ui true
+显示历史记录时，只显示一行注释信息：
+git config format.pretty oneline
+交互地添加文件至缓存区：
+git add -i</code></pre>
+<h2 id="2">2&nbsp;&nbsp;Git流程</h2>
+<h3 id="2.1">2.1&nbsp;&nbsp;远程流程</h3>
+<p><img src="section/02.jpg" alt=""></p>
+<h3 id="2.2">2.2&nbsp;&nbsp;本地流程</h3>
+<blockquote>
+<p>你的本地仓库由 git 维护的三棵“树”组成。<br>第一个是你的 工作目录，它持有实际文件；<br>第二个是 缓存区（Index），它像个缓存区域，临时保存你的改动；<br>最后是 HEAD，指向你最近一次提交后的结果。</p>
+</blockquote>
+<p><img src="section/03.jpg" alt=""></p>
+<h2 id="3">3&nbsp;&nbsp;Git常用命令速查</h2>
+<p><img src="section/01.jpg" alt=""></p>
+
+</article>
+<footer>
+<p>© 2015-2016 杭杭工作室, Inc.</p>
+
+</footer>
+</body>
+</html>
