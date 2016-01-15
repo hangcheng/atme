@@ -28,13 +28,16 @@ Java ┋ Web
 
 
 
-JS ┋ CSS
+JS ┋ CSS UI
 -
 <a href="http://t.mb5u.com/jquery" target="view_window">jQuery API</a>
 <a href="http://jq-school.com" target="view_window">jQuery school</a>
 <a href="http://seajs.org" target="view_window">Seajs模块</a>
 <a href="http://www.layui.com" target="view_window">弹出层layer</a>
+
 <a href="http://www.bootcss.com" target="view_window">Bootstrap</a>
+<a href="http://www.semantic-ui.cn" target="view_window">Semantic UI</a>
+<a href="http://amazeui.org" target="view_window">Amaze UI</a>
 
 
 Nodejs  ┋  React
@@ -47,7 +50,7 @@ Nodejs  ┋  React
 <a href="http://nodeapi.ucdok.com/#/api" target="view_window">Nodejs API</a>
 
 <a href="http://reactjs.cn" target="view_window">React中文社区</a>
-
+<a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="view_window">React入门实例</a>
 
 Database
 -
