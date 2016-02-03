@@ -432,6 +432,7 @@ footer {
 </nav>
 <article>
 <x-markdown src="section/01_基础知识.md" />
+<x-markdown src="section/02_常用命令.md" />
 </article>
 <footer>
 <x-markdown src="section/99_footer.md" />
