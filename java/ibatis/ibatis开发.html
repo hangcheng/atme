@@ -430,11 +430,32 @@ footer {
 <a class="button">&#9776;&nbsp;索引</a>
 </div>
 <ul>
-<li class="level2"><a href="#1">1&nbsp;&nbsp;ibatis 映射文件标签元素</a></li><li class="level3"><a href="#1.1">1.1&nbsp;&nbsp;sqlMap 标签：</a></li><li class="level4"><a href="#1.1.1">1.1.1&nbsp;&nbsp;sql sql语句</a></li><li class="level4"><a href="#1.1.2">1.1.2&nbsp;&nbsp;insert 添加</a></li><li class="level4"><a href="#1.1.3">1.1.3&nbsp;&nbsp;delete 删除</a></li><li class="level4"><a href="#1.1.4">1.1.4&nbsp;&nbsp;update 更新</a></li><li class="level4"><a href="#1.1.5">1.1.5&nbsp;&nbsp;select 查询</a></li><li class="level4"><a href="#1.1.6">1.1.6&nbsp;&nbsp;procedure 存储过程</a></li><li class="level4"><a href="#1.1.7">1.1.7&nbsp;&nbsp;typeAlias 类别名</a></li><li class="level4"><a href="#1.1.8">1.1.8&nbsp;&nbsp;resultMap</a></li><li class="level4"><a href="#1.1.9">1.1.9&nbsp;&nbsp;parameterMap</a></li><li class="level2"><a href="#2">2&nbsp;&nbsp;ibatis 动态标签</a></li><li class="level3"><a href="#2.1">2.1&nbsp;&nbsp;动态标签详情</a></li><li class="level4"><a href="#2.1.1">2.1.1&nbsp;&nbsp;dynamic</a></li><li class="level3"><a href="#2.2">2.2&nbsp;&nbsp;二元判断标签</a></li><li class="level4"><a href="#2.2.1">2.2.1&nbsp;&nbsp;isEqual</a></li><li class="level4"><a href="#2.2.2">2.2.2&nbsp;&nbsp;isNotEqual</a></li><li class="level4"><a href="#2.2.3">2.2.3&nbsp;&nbsp;isGreaterThan</a></li><li class="level4"><a href="#2.2.4">2.2.4&nbsp;&nbsp;isGreaterEqual</a></li><li class="level4"><a href="#2.2.5">2.2.5&nbsp;&nbsp;isLessThan</a></li><li class="level4"><a href="#2.2.6">2.2.6&nbsp;&nbsp;isLessEqual</a></li><li class="level3"><a href="#2.3">2.3&nbsp;&nbsp;一元判断标签</a></li><li class="level4"><a href="#2.3.1">2.3.1&nbsp;&nbsp;isPropertyAvailable</a></li><li class="level4"><a href="#2.3.2">2.3.2&nbsp;&nbsp;isNotPropertyAvailable</a></li><li class="level4"><a href="#2.3.3">2.3.3&nbsp;&nbsp;isNull</a></li><li class="level4"><a href="#2.3.4">2.3.4&nbsp;&nbsp;isNotNull</a></li><li class="level4"><a href="#2.3.5">2.3.5&nbsp;&nbsp;isEmpty</a></li><li class="level4"><a href="#2.3.6">2.3.6&nbsp;&nbsp;isNotEmpty</a></li><li class="level3"><a href="#2.4">2.4&nbsp;&nbsp;高级标签</a></li><li class="level4"><a href="#2.4.1">2.4.1&nbsp;&nbsp;iterate</a></li><li class="level2"><a href="#3">3&nbsp;&nbsp;ibatis java使用</a></li><li class="level3"><a href="#3.1">3.1&nbsp;&nbsp;SqlMapClientTemplate和SqlMapClient</a></li><li class="level3"><a href="#3.2">3.2&nbsp;&nbsp;java 封装</a></li></ul>
+<li class="level2"><a href="#1">1&nbsp;&nbsp;ibatis #与$区别</a></li><li class="level3"><a href="#1.1">1.1&nbsp;&nbsp;#与$用法与区别</a></li><li class="level2"><a href="#2">2&nbsp;&nbsp;ibatis 映射文件标签元素</a></li><li class="level3"><a href="#2.1">2.1&nbsp;&nbsp;sqlMap 标签：</a></li><li class="level4"><a href="#2.1.1">2.1.1&nbsp;&nbsp;sql sql语句</a></li><li class="level4"><a href="#2.1.2">2.1.2&nbsp;&nbsp;insert 添加</a></li><li class="level4"><a href="#2.1.3">2.1.3&nbsp;&nbsp;delete 删除</a></li><li class="level4"><a href="#2.1.4">2.1.4&nbsp;&nbsp;update 更新</a></li><li class="level4"><a href="#2.1.5">2.1.5&nbsp;&nbsp;select 查询</a></li><li class="level4"><a href="#2.1.6">2.1.6&nbsp;&nbsp;procedure 存储过程</a></li><li class="level4"><a href="#2.1.7">2.1.7&nbsp;&nbsp;typeAlias 类别名</a></li><li class="level4"><a href="#2.1.8">2.1.8&nbsp;&nbsp;resultMap</a></li><li class="level4"><a href="#2.1.9">2.1.9&nbsp;&nbsp;parameterMap</a></li><li class="level2"><a href="#3">3&nbsp;&nbsp;ibatis 动态标签</a></li><li class="level3"><a href="#3.1">3.1&nbsp;&nbsp;动态标签详情</a></li><li class="level4"><a href="#3.1.1">3.1.1&nbsp;&nbsp;dynamic</a></li><li class="level3"><a href="#3.2">3.2&nbsp;&nbsp;二元判断标签</a></li><li class="level4"><a href="#3.2.1">3.2.1&nbsp;&nbsp;isEqual</a></li><li class="level4"><a href="#3.2.2">3.2.2&nbsp;&nbsp;isNotEqual</a></li><li class="level4"><a href="#3.2.3">3.2.3&nbsp;&nbsp;isGreaterThan</a></li><li class="level4"><a href="#3.2.4">3.2.4&nbsp;&nbsp;isGreaterEqual</a></li><li class="level4"><a href="#3.2.5">3.2.5&nbsp;&nbsp;isLessThan</a></li><li class="level4"><a href="#3.2.6">3.2.6&nbsp;&nbsp;isLessEqual</a></li><li class="level3"><a href="#3.3">3.3&nbsp;&nbsp;一元判断标签</a></li><li class="level4"><a href="#3.3.1">3.3.1&nbsp;&nbsp;isPropertyAvailable</a></li><li class="level4"><a href="#3.3.2">3.3.2&nbsp;&nbsp;isNotPropertyAvailable</a></li><li class="level4"><a href="#3.3.3">3.3.3&nbsp;&nbsp;isNull</a></li><li class="level4"><a href="#3.3.4">3.3.4&nbsp;&nbsp;isNotNull</a></li><li class="level4"><a href="#3.3.5">3.3.5&nbsp;&nbsp;isEmpty</a></li><li class="level4"><a href="#3.3.6">3.3.6&nbsp;&nbsp;isNotEmpty</a></li><li class="level3"><a href="#3.4">3.4&nbsp;&nbsp;高级标签</a></li><li class="level4"><a href="#3.4.1">3.4.1&nbsp;&nbsp;iterate</a></li><li class="level2"><a href="#4">4&nbsp;&nbsp;ibatis java使用</a></li><li class="level3"><a href="#4.1">4.1&nbsp;&nbsp;SqlMapClientTemplate和SqlMapClient</a></li><li class="level3"><a href="#4.2">4.2&nbsp;&nbsp;java 封装</a></li></ul>
 
 </nav>
 <article>
-<h2 id="1">1&nbsp;&nbsp;ibatis 映射文件标签元素</h2>
+<h2 id="1">1&nbsp;&nbsp;ibatis #与$区别</h2>
+<h3 id="1.1">1.1&nbsp;&nbsp;#与$用法与区别</h3>
+<pre><code>区别总结如下: 
+eg: where user_id in (#user_id_list# )
+1.#是把传入的数据当作字符串，如#user_id_list#传入的是1,2,则sql语句生成是这样，in (&#39;1,2&#39;) ,当然不可以
+2.$传入的数据直接生成在sql里，如#user_id_list#传入的是1,2,则sql语句生成是这样，in(1,2) 这就对了． 
+3.#方式能够很大程度防止sql注入． 
+4.$方式无法方式sql注入． 
+5.$方式一般用于传入数据库对象．例如传入表名. 
+6.一般能用#的就别用$. 
+
+模糊查询中的写法:
+#  &#39;%&#39;||#str#||&#39;%&#39;
+$  &#39;%$str$%&#39;
+
+直观的说:
+#str# 出来的效果是  &#39;str&#39; 
+$str$ 出来的效果是  str 
+
+##只能用在特定的几个地方 $$可以用在任何地方  比如 order by $str$ 
+你甚至可以直接写  $str$  把 order by 这个字串放在str里传进来</code></pre>
+<h2 id="2">2&nbsp;&nbsp;ibatis 映射文件标签元素</h2>
 <blockquote>
 <p>即： sqlMap 标签</p>
 </blockquote>
@@ -446,8 +467,8 @@ footer {
     Ibatis的输入参数和输出参数只能是一个，因此，当输入参数在一个实体对象时，使用 parameterClass ，当输入对象也只在一个实体对象中时，使用 resultClass 。
   但是有很多时候输入参数和输出参数可能包含在几个实体对象中，我们不能为了只传递一个参数而专门为这些输入和输出参数组合专门创建类，
   因此就需要使用 parameterMap和resultMap 来组合多个实体对象中的字段。</code></pre>
-<h3 id="1.1">1.1&nbsp;&nbsp;sqlMap 标签：</h3>
-<h4 id="1.1.1">1.1.1&nbsp;&nbsp;sql sql语句</h4>
+<h3 id="2.1">2.1&nbsp;&nbsp;sqlMap 标签：</h3>
+<h4 id="2.1.1">2.1.1&nbsp;&nbsp;sql sql语句</h4>
 <pre><code>与include标签结合使用可以拆分sql语句减少重用
 &lt;sql id=&quot;test&quot;&gt;
     select 1 from dual
@@ -455,7 +476,7 @@ footer {
 &lt;select id=”selectTest” resultClass=”查询结果类型” &gt;  
       &lt;include refid=&quot;test&quot;/&gt;
 &lt;/select&gt;</code></pre>
-<h4 id="1.1.2">1.1.2&nbsp;&nbsp;insert 添加</h4>
+<h4 id="2.1.2">2.1.2&nbsp;&nbsp;insert 添加</h4>
 <pre><code>&lt;insert id=”Ibatis添加实体操作Id” parameterClass=”参数类型”&gt;  
     &lt;selectkey resultClass=”int” keyProperty=”自定义主键名称”&gt;  
          select 序列名.nextval from dual;  
@@ -465,15 +486,15 @@ footer {
 &lt;/insert&gt;
 注：主键自增长可选择&lt;selectkey&gt;标签
    selectkey标签中的keyProperty属性是主键赋值的对象。</code></pre>
-<h4 id="1.1.3">1.1.3&nbsp;&nbsp;delete 删除</h4>
+<h4 id="2.1.3">2.1.3&nbsp;&nbsp;delete 删除</h4>
 <pre><code>&lt;delete id=”Ibatis删除实体操作Id” parameterClass=”参数类型”&gt;  
        delete from 实体对应数据库中的表名 where 列名=#列名对应的实体字段名#;  
 &lt;/delete&gt;</code></pre>
-<h4 id="1.1.4">1.1.4&nbsp;&nbsp;update 更新</h4>
+<h4 id="2.1.4">2.1.4&nbsp;&nbsp;update 更新</h4>
 <pre><code>&lt;update id=”Ibatis更新实体操作Id” parameterClass=”参数类型”&gt;  
        update 实体对应数据库的表名 set 列名1=#字段1#，列名2=#字段2#，…….where ….;  
 &lt;/update&gt;</code></pre>
-<h4 id="1.1.5">1.1.5&nbsp;&nbsp;select 查询</h4>
+<h4 id="2.1.5">2.1.5&nbsp;&nbsp;select 查询</h4>
 <pre><code>id    指定名称  
 parameterClass  参数类型，类的别名或全名  
 parameterMap    传入参数的显示映射  
@@ -496,7 +517,7 @@ eg：
 iBATIS会在每次查询的时候内省查询结果来设置元数据，来保证返回恰当的结果。  
 这个属性会造成一定的性能损失，所以要谨慎使用，只在你需要的时候使用－－  
 查询列发生变化，直接的，或者隐含的，检索的表发生变化。</code></pre>
-<h4 id="1.1.6">1.1.6&nbsp;&nbsp;procedure 存储过程</h4>
+<h4 id="2.1.6">2.1.6&nbsp;&nbsp;procedure 存储过程</h4>
 <blockquote>
 <p>需要定义存储过程 输入输出参数</p>
 </blockquote>
@@ -520,10 +541,10 @@ iBATIS会在每次查询的时候内省查询结果来设置元数据，来保�
         }    
     ]]&gt;
 &lt;/procedure&gt;</code></pre>
-<h4 id="1.1.7">1.1.7&nbsp;&nbsp;typeAlias 类别名</h4>
+<h4 id="2.1.7">2.1.7&nbsp;&nbsp;typeAlias 类别名</h4>
 <pre><code>定义别名，使用时就可省略包名
 &lt;typeAlias alias=&quot;Account&quot; type=&quot;com.mydomain.domain.Account&quot;/&gt;</code></pre>
-<h4 id="1.1.8">1.1.8&nbsp;&nbsp;resultMap</h4>
+<h4 id="2.1.8">2.1.8&nbsp;&nbsp;resultMap</h4>
 <blockquote>
 <p>返回类型显示映射关系 </p>
 </blockquote>
@@ -531,7 +552,7 @@ iBATIS会在每次查询的时候内省查询结果来设置元数据，来保�
     &lt;result property=&quot;id&quot; column=&quot;ACC_ID&quot;/&gt; 
     &lt;result property=&quot;firstName&quot; column=&quot;ACC_FIRST_NAME&quot;/&gt; 
 &lt;/resultMap&gt;</code></pre>
-<h4 id="1.1.9">1.1.9&nbsp;&nbsp;parameterMap</h4>
+<h4 id="2.1.9">2.1.9&nbsp;&nbsp;parameterMap</h4>
 <blockquote>
 <p>参数类型外联映射关系 </p>
 </blockquote>
@@ -539,16 +560,16 @@ iBATIS会在每次查询的时候内省查询结果来设置元数据，来保�
    &lt;parameter property=”email1” jdbcType=”varchar” javaType=”java.lang.String” mode=”INOUT”/&gt;  
    &lt;parameter property=”email2” jdbcType=”varchar” javaType=”java.lang.String” mode=”INOUT”/&gt;  
 &lt;/parameterMap&gt;</code></pre>
-<h2 id="2">2&nbsp;&nbsp;ibatis 动态标签</h2>
-<h3 id="2.1">2.1&nbsp;&nbsp;动态标签详情</h3>
-<h4 id="2.1.1">2.1.1&nbsp;&nbsp;dynamic</h4>
+<h2 id="3">3&nbsp;&nbsp;ibatis 动态标签</h2>
+<h3 id="3.1">3.1&nbsp;&nbsp;动态标签详情</h3>
+<h4 id="3.1.1">3.1.1&nbsp;&nbsp;dynamic</h4>
 <blockquote>
 <p>SQL语句的动态部分</p>
 </blockquote>
 <pre><code>&lt;dynamic prepend=&quot;WHERE&quot;&gt;  
 
 &lt;/dynamic&gt;</code></pre>
-<h3 id="2.2">2.2&nbsp;&nbsp;二元判断标签</h3>
+<h3 id="3.2">3.2&nbsp;&nbsp;二元判断标签</h3>
 <pre><code>即：与静态值或属性的值比较 
 共同的元素 ：
 prepend（可选） 
@@ -560,31 +581,31 @@ eg:
 &lt;isLessEqual prepend=”AND” property=”test” compareValue=”0”&gt;
   sql条件语句
 &lt;/isLessEqual&gt;</code></pre>
-<h4 id="2.2.1">2.2.1&nbsp;&nbsp;isEqual</h4>
+<h4 id="3.2.1">3.2.1&nbsp;&nbsp;isEqual</h4>
 <blockquote>
 <p>比较属性值和静态值或另一个属性值是否相等。</p>
 </blockquote>
-<h4 id="2.2.2">2.2.2&nbsp;&nbsp;isNotEqual</h4>
+<h4 id="3.2.2">3.2.2&nbsp;&nbsp;isNotEqual</h4>
 <blockquote>
 <p>比较属性值和静态值或另一个属性值是否不相等。</p>
 </blockquote>
-<h4 id="2.2.3">2.2.3&nbsp;&nbsp;isGreaterThan</h4>
+<h4 id="3.2.3">3.2.3&nbsp;&nbsp;isGreaterThan</h4>
 <blockquote>
 <p>比较属性值是否大于静态值或另一个属性值。</p>
 </blockquote>
-<h4 id="2.2.4">2.2.4&nbsp;&nbsp;isGreaterEqual</h4>
+<h4 id="3.2.4">3.2.4&nbsp;&nbsp;isGreaterEqual</h4>
 <blockquote>
 <p>比较属性值是否大于等于静态值或另一个属性值。</p>
 </blockquote>
-<h4 id="2.2.5">2.2.5&nbsp;&nbsp;isLessThan</h4>
+<h4 id="3.2.5">3.2.5&nbsp;&nbsp;isLessThan</h4>
 <blockquote>
 <p>比较属性值是否小于静态值或另一个属性值。</p>
 </blockquote>
-<h4 id="2.2.6">2.2.6&nbsp;&nbsp;isLessEqual</h4>
+<h4 id="3.2.6">3.2.6&nbsp;&nbsp;isLessEqual</h4>
 <blockquote>
 <p>比较属性值是否小于等于静态值或另一个属性值。 </p>
 </blockquote>
-<h3 id="2.3">2.3&nbsp;&nbsp;一元判断标签</h3>
+<h3 id="3.3">3.3&nbsp;&nbsp;一元判断标签</h3>
 <pre><code>即：检查属性的状态是否符合特定的条件
 共同的元素：
 prepend（可选） 
@@ -594,32 +615,32 @@ eg:
 &lt;isNotEmpty prepend=”AND” property=”test” &gt; 
  sql条件语句
 &lt;/isNotEmpty&gt;</code></pre>
-<h4 id="2.3.1">2.3.1&nbsp;&nbsp;isPropertyAvailable</h4>
+<h4 id="3.3.1">3.3.1&nbsp;&nbsp;isPropertyAvailable</h4>
 <blockquote>
 <p>检查是否存在该属性（存在parameter bean的属性）。</p>
 </blockquote>
-<h4 id="2.3.2">2.3.2&nbsp;&nbsp;isNotPropertyAvailable</h4>
+<h4 id="3.3.2">3.3.2&nbsp;&nbsp;isNotPropertyAvailable</h4>
 <blockquote>
 <p>检查是否不存在该属性（不存在parameter bean的属性）。</p>
 </blockquote>
-<h4 id="2.3.3">2.3.3&nbsp;&nbsp;isNull</h4>
+<h4 id="3.3.3">3.3.3&nbsp;&nbsp;isNull</h4>
 <blockquote>
 <p>检查属性是否为null。</p>
 </blockquote>
-<h4 id="2.3.4">2.3.4&nbsp;&nbsp;isNotNull</h4>
+<h4 id="3.3.4">3.3.4&nbsp;&nbsp;isNotNull</h4>
 <blockquote>
 <p>检查属性是否不为null。</p>
 </blockquote>
-<h4 id="2.3.5">2.3.5&nbsp;&nbsp;isEmpty</h4>
+<h4 id="3.3.5">3.3.5&nbsp;&nbsp;isEmpty</h4>
 <blockquote>
 <p>检查Collection.size()的值，属性的String或String.valueOf()值,是否为null或空（“”或size() &lt; 1）。</p>
 </blockquote>
-<h4 id="2.3.6">2.3.6&nbsp;&nbsp;isNotEmpty</h4>
+<h4 id="3.3.6">3.3.6&nbsp;&nbsp;isNotEmpty</h4>
 <blockquote>
 <p>检查Collection.size()的值，属性的String或String.valueOf()值,是否不为null或不为空（“”或size() &gt; 0）</p>
 </blockquote>
-<h3 id="2.4">2.4&nbsp;&nbsp;高级标签</h3>
-<h4 id="2.4.1">2.4.1&nbsp;&nbsp;iterate</h4>
+<h3 id="3.4">3.4&nbsp;&nbsp;高级标签</h3>
+<h4 id="3.4.1">3.4.1&nbsp;&nbsp;iterate</h4>
 <blockquote>
 <p>迭代标签</p>
 </blockquote>
@@ -640,14 +661,14 @@ id in
 
 注意：使用标签时，在List元素名后面包括方括号[]非常重要，方括号[]将对象标记为List，以防解析器简单地将List输出成String。</code></pre>
 
-<h2 id="3">3&nbsp;&nbsp;ibatis java使用</h2>
-<h3 id="3.1">3.1&nbsp;&nbsp;SqlMapClientTemplate和SqlMapClient</h3>
+<h2 id="4">4&nbsp;&nbsp;ibatis java使用</h2>
+<h3 id="4.1">4.1&nbsp;&nbsp;SqlMapClientTemplate和SqlMapClient</h3>
 <pre><code>SqlMapClientTemplate是SqlMapClient的封装类. 
 SqlMapClient中包含着session的管理. 
 SqlMapClientTemplate用于session的封装,以及异常的捕捉. 
 所以按照以上的推断来说.应该尽量使用SqlMapClientTemplate. 
 保证session以及Exception的正常以及统一.</code></pre>
-<h3 id="3.2">3.2&nbsp;&nbsp;java 封装</h3>
+<h3 id="4.2">4.2&nbsp;&nbsp;java 封装</h3>
 <pre><code>    private SqlMapClientTemplate sqlMapClientTemplate = null;
     private TransactionTemplate transactionTemplate = null;
 

@@ -431,7 +431,8 @@ footer {
 <x-index />
 </nav>
 <article>
-<x-markdown src="mybatisSection/01_mybatis自动生成配置.md" />
+<x-markdown src="mybatisSection/01_mybatis标签.md" />
+<x-markdown src="mybatisSection/98_mybatis自动生成配置.md" />
 </article>
 <footer>
 <x-markdown src="mybatisSection/99_footer.md" />
