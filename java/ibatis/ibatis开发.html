@@ -1,0 +1,869 @@
+<!doctype HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+<title>ibatis开发</title>
+<style>
+/* RESET
+=============================================================================*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+	blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
+	em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
+	b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
+	details, embed, figure, figcaption, footer, header, hgroup, menu, nav,
+	output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+/* BODY
+=============================================================================*/
+body {
+	font-family: Helvetica, arial, freesans, clean, sans-serif;
+	font-size: 14px;
+	line-height: 1.6;
+	color: #333;
+	background-color: #fff;
+	padding: 0 30px 0 270px;
+	max-width: 960px;
+	margin: 0 auto;
+}
+
+body>*:first-child {
+	margin-top: 0 !important;
+}
+
+body>*:last-child {
+	margin-bottom: 0 !important;
+}
+
+/**********   索引 **********************************/
+nav {
+	font-size: 10pt;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 270px;
+}
+
+nav .menubar {
+	border-bottom: solid 1px #ccc;
+	display: none;
+	height: 48px;
+	line-height: 48px;
+	padding: 0 10px;
+}
+
+nav .button {
+	background: #777;
+	border: 1px solid #333;
+	color: #fff;
+	font-size: 10pt;
+	font-weight: bold;
+	padding: 8px;
+	border-radius: 4px;
+}
+
+nav ul {
+	padding: 0 0 0 10px;
+}
+
+nav ul a {
+	color: #333;
+	text-decoration: none;
+}
+
+nav ul a:hover {
+	text-decoration: underline;
+}
+
+nav li {
+	line-height: 180%;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav .level2 {
+	font-size: 11pt;
+	font-weight: bold;
+}
+
+nav .level3 {
+	padding-left: 1em;
+}
+
+nav .level4 {
+	padding-left: 2em;
+}
+
+nav .level5 {
+	padding-left: 4em;
+}
+
+nav .level6 {
+	padding-left: 8em;
+}
+
+header {
+	text-align: center;
+}
+
+/* BLOCKS
+=============================================================================*/
+p, blockquote, ul, ol, dl, table, pre {
+	margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+h1, h2, h3, h4, h5, h6 {
+	margin: 20px 0 10px;
+	padding: 0;
+	font-weight: bold;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt,
+	h5 code, h6 tt, h6 code {
+	font-size: inherit;
+}
+
+h1 {
+	font-size: 28px;
+	color: #000;
+}
+
+h2 {
+	font-size: 24px;
+	border-bottom: 1px solid #ccc;
+	color: #000;
+}
+
+h3 {
+	font-size: 18px;
+}
+
+h4 {
+	font-size: 16px;
+}
+
+h5 {
+	font-size: 14px;
+}
+
+h6 {
+	color: #777;
+	font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child,
+	body>h4:first-child, body>h5:first-child, body>h6:first-child {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4,
+	a:first-child h5, a:first-child h6 {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+	margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+a {
+	color: #4183C4;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+ul, ol {
+	padding-left: 30px;
+}
+
+ul li>:first-child, ol li>:first-child, ul li ul:first-of-type, ol li ol:first-of-type,
+	ul li ol:first-of-type, ol li ul:first-of-type {
+	margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+	margin-bottom: 0;
+}
+
+dl {
+	padding: 0;
+}
+
+dl dt {
+	font-size: 14px;
+	font-weight: bold;
+	font-style: italic;
+	padding: 0;
+	margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+	padding: 0;
+}
+
+dl dt>:first-child {
+	margin-top: 0px;
+}
+
+dl dt>:last-child {
+	margin-bottom: 0px;
+}
+
+dl dd {
+	margin: 0 0 15px;
+	padding: 0 15px;
+}
+
+dl dd>:first-child {
+	margin-top: 0px;
+}
+
+dl dd>:last-child {
+	margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+pre, code, tt {
+	font-size: 12px;
+	font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+	margin: 0 0px;
+	padding: 0px 0px;
+	white-space: nowrap;
+	border: 1px solid #eaeaea;
+	background-color: #f8f8f8;
+	border-radius: 3px;
+}
+
+pre>code {
+	margin: 0;
+	padding: 0;
+	white-space: pre;
+	border: none;
+	background: transparent;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #ccc;
+	font-size: 13px;
+	line-height: 19px;
+	overflow: auto;
+	padding: 6px 10px;
+	border-radius: 3px;
+}
+
+pre code, pre tt {
+	background-color: transparent;
+	border: none;
+}
+
+kbd {
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	background-color: #DDDDDD;
+	background-image: linear-gradient(#F1F1F1, #DDDDDD);
+	background-repeat: repeat-x;
+	border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+	border-image: none;
+	border-radius: 2px 2px 2px 2px;
+	border-style: solid;
+	border-width: 1px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	line-height: 10px;
+	padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+blockquote {
+	border-left: 4px solid #DDD;
+	padding: 0 15px;
+	color: #777;
+}
+
+blockquote>:first-child {
+	margin-top: 0px;
+}
+
+blockquote>:last-child {
+	margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+hr {
+	clear: both;
+	margin: 15px 0;
+	height: 0px;
+	overflow: hidden;
+	border: none;
+	background: transparent;
+	border-bottom: 4px solid #ddd;
+	padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+table th {
+	font-weight: bold;
+}
+
+table th, table td {
+	border: 1px solid #ccc;
+	padding: 6px 13px;
+}
+
+table tr {
+	border-top: 1px solid #ccc;
+	background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+	background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+img {
+	max-width: 100%
+}
+
+/***********  底部 *************************/
+footer {
+	border-top: 1px solid #ccc;
+	font-size: 10pt;
+	margin-top: 4em;
+}
+
+/******************** media **********************************/
+@media ( max-width : 768px) {
+	body {
+		padding: 0 10px 0 300px;
+	}
+	nav {
+		width: 300px;
+	}
+}
+
+@media ( max-width : 480px) {
+	body {
+		padding: 64px 10px 0 10px;
+	}
+	header .banner {
+		display: none;
+	}
+	nav {
+		position: absolute;
+		width: 100%;
+	}
+	nav .menubar {
+		display: block;
+	}
+	nav .banner {
+		float: right;
+	}
+	nav ul {
+		background: #fff;
+		display: none;
+		font-size: 14pt;
+		margin: 0;
+		padding: 0 0 0 8px;
+	}
+	nav .level2 {
+		font-size: 16pt;
+		font-weight: bold;
+	}
+	nav li {
+		line-height: 240%;
+	}
+	.index nav ul {
+		display: block;
+	}
+	.index article {
+		display: none;
+	}
+}
+</style>
+<script>
+  (function (tags) {
+    var i = 0, len = tags.length;
+
+    for (; i < len; ++i) {
+        document.createElement(tags[i]);
+    }
+  }([ 'header', 'nav', 'article', 'footer' ]));
+</script>
+</head>
+<body>
+<header>
+<h1 id="ibatis-">ibatis 开发配置</h1>
+
+</header>
+<nav>
+<div class="menubar">
+<a class="button">&#9776;&nbsp;索引</a>
+</div>
+<ul>
+<li class="level2"><a href="#1">1&nbsp;&nbsp;ibatis 映射文件标签元素</a></li><li class="level3"><a href="#1.1">1.1&nbsp;&nbsp;sqlMap 标签：</a></li><li class="level4"><a href="#1.1.1">1.1.1&nbsp;&nbsp;sql sql语句</a></li><li class="level4"><a href="#1.1.2">1.1.2&nbsp;&nbsp;insert 添加</a></li><li class="level4"><a href="#1.1.3">1.1.3&nbsp;&nbsp;delete 删除</a></li><li class="level4"><a href="#1.1.4">1.1.4&nbsp;&nbsp;update 更新</a></li><li class="level4"><a href="#1.1.5">1.1.5&nbsp;&nbsp;select 查询</a></li><li class="level4"><a href="#1.1.6">1.1.6&nbsp;&nbsp;procedure 存储过程</a></li><li class="level4"><a href="#1.1.7">1.1.7&nbsp;&nbsp;typeAlias 类别名</a></li><li class="level4"><a href="#1.1.8">1.1.8&nbsp;&nbsp;resultMap</a></li><li class="level4"><a href="#1.1.9">1.1.9&nbsp;&nbsp;parameterMap</a></li><li class="level2"><a href="#2">2&nbsp;&nbsp;ibatis 动态标签</a></li><li class="level3"><a href="#2.1">2.1&nbsp;&nbsp;动态标签详情</a></li><li class="level4"><a href="#2.1.1">2.1.1&nbsp;&nbsp;dynamic</a></li><li class="level3"><a href="#2.2">2.2&nbsp;&nbsp;二元判断标签</a></li><li class="level4"><a href="#2.2.1">2.2.1&nbsp;&nbsp;isEqual</a></li><li class="level4"><a href="#2.2.2">2.2.2&nbsp;&nbsp;isNotEqual</a></li><li class="level4"><a href="#2.2.3">2.2.3&nbsp;&nbsp;isGreaterThan</a></li><li class="level4"><a href="#2.2.4">2.2.4&nbsp;&nbsp;isGreaterEqual</a></li><li class="level4"><a href="#2.2.5">2.2.5&nbsp;&nbsp;isLessThan</a></li><li class="level4"><a href="#2.2.6">2.2.6&nbsp;&nbsp;isLessEqual</a></li><li class="level3"><a href="#2.3">2.3&nbsp;&nbsp;一元判断标签</a></li><li class="level4"><a href="#2.3.1">2.3.1&nbsp;&nbsp;isPropertyAvailable</a></li><li class="level4"><a href="#2.3.2">2.3.2&nbsp;&nbsp;isNotPropertyAvailable</a></li><li class="level4"><a href="#2.3.3">2.3.3&nbsp;&nbsp;isNull</a></li><li class="level4"><a href="#2.3.4">2.3.4&nbsp;&nbsp;isNotNull</a></li><li class="level4"><a href="#2.3.5">2.3.5&nbsp;&nbsp;isEmpty</a></li><li class="level4"><a href="#2.3.6">2.3.6&nbsp;&nbsp;isNotEmpty</a></li><li class="level3"><a href="#2.4">2.4&nbsp;&nbsp;高级标签</a></li><li class="level4"><a href="#2.4.1">2.4.1&nbsp;&nbsp;iterate</a></li><li class="level2"><a href="#3">3&nbsp;&nbsp;ibatis java使用</a></li><li class="level3"><a href="#3.1">3.1&nbsp;&nbsp;SqlMapClientTemplate和SqlMapClient</a></li><li class="level3"><a href="#3.2">3.2&nbsp;&nbsp;java 封装</a></li></ul>
+
+</nav>
+<article>
+<h2 id="1">1&nbsp;&nbsp;ibatis 映射文件标签元素</h2>
+<blockquote>
+<p>即： sqlMap 标签</p>
+</blockquote>
+<pre><code>1)Ibatis的SQL Map的核心概念是Mapped Statement。Mapped Statement可以使用任意的SQL语句，
+  并拥有 parameterMap/parameterClass(输入参数)和resultMap/resultClass(输出结果)。
+(2)&lt;statement&gt;元素是个通用的声明，可以用于任何类型的SQL语句，但是通常使用具体的&lt;statement&gt;类型，
+   如：查询使用&lt;select&gt;，添加使用&lt;insert&gt;，更新使用&lt;update&gt;，删除使用&lt;delete&gt;
+(3)Ibatis对象之间的关系：
+    Ibatis的输入参数和输出参数只能是一个，因此，当输入参数在一个实体对象时，使用 parameterClass ，当输入对象也只在一个实体对象中时，使用 resultClass 。
+  但是有很多时候输入参数和输出参数可能包含在几个实体对象中，我们不能为了只传递一个参数而专门为这些输入和输出参数组合专门创建类，
+  因此就需要使用 parameterMap和resultMap 来组合多个实体对象中的字段。</code></pre>
+<h3 id="1.1">1.1&nbsp;&nbsp;sqlMap 标签：</h3>
+<h4 id="1.1.1">1.1.1&nbsp;&nbsp;sql sql语句</h4>
+<pre><code>与include标签结合使用可以拆分sql语句减少重用
+&lt;sql id=&quot;test&quot;&gt;
+    select 1 from dual
+&lt;/sql&gt;
+&lt;select id=”selectTest” resultClass=”查询结果类型” &gt;  
+      &lt;include refid=&quot;test&quot;/&gt;
+&lt;/select&gt;</code></pre>
+<h4 id="1.1.2">1.1.2&nbsp;&nbsp;insert 添加</h4>
+<pre><code>&lt;insert id=”Ibatis添加实体操作Id” parameterClass=”参数类型”&gt;  
+    &lt;selectkey resultClass=”int” keyProperty=”自定义主键名称”&gt;  
+         select 序列名.nextval from dual;  
+    &lt;/selectkey&gt;  
+    insert into 表名(主键,列名1, 列名2,……) 
+           values(#自定义主键名称#，#实体类字段1#,#实体类字段2#......);  
+&lt;/insert&gt;
+注：主键自增长可选择&lt;selectkey&gt;标签
+   selectkey标签中的keyProperty属性是主键赋值的对象。</code></pre>
+<h4 id="1.1.3">1.1.3&nbsp;&nbsp;delete 删除</h4>
+<pre><code>&lt;delete id=”Ibatis删除实体操作Id” parameterClass=”参数类型”&gt;  
+       delete from 实体对应数据库中的表名 where 列名=#列名对应的实体字段名#;  
+&lt;/delete&gt;</code></pre>
+<h4 id="1.1.4">1.1.4&nbsp;&nbsp;update 更新</h4>
+<pre><code>&lt;update id=”Ibatis更新实体操作Id” parameterClass=”参数类型”&gt;  
+       update 实体对应数据库的表名 set 列名1=#字段1#，列名2=#字段2#，…….where ….;  
+&lt;/update&gt;</code></pre>
+<h4 id="1.1.5">1.1.5&nbsp;&nbsp;select 查询</h4>
+<pre><code>id    指定名称  
+parameterClass  参数类型，类的别名或全名  
+parameterMap    传入参数的显示映射  
+resultClass     返回类型，类的别名或全名  
+resultMap       返回类型的显示映射  
+cacheModel      缓存模式  
+resultSetType   结果集类型，如游标的类型只能往前  
+fetchSize       预取回指定大小的数据  
+xmlResultName   当resultClass值为xml时在此指定XML文件的根标签  
+remapResults    如果返回的字段不确定，将此属性设为true，默认为false    
+                如:select * from $table$  或select $fields$ from table  
+timeout         超时   
+eg：
+ &lt;select id=”Ibatis查询实体操作Id” resultClass=”查询结果类型”&gt;  
+   select * from 实体对应的表名;
+ &lt;/select&gt; 
+
+注意： 
+当设置remapResults为&quot;true&quot;时：
+iBATIS会在每次查询的时候内省查询结果来设置元数据，来保证返回恰当的结果。  
+这个属性会造成一定的性能损失，所以要谨慎使用，只在你需要的时候使用－－  
+查询列发生变化，直接的，或者隐含的，检索的表发生变化。</code></pre>
+<h4 id="1.1.6">1.1.6&nbsp;&nbsp;procedure 存储过程</h4>
+<blockquote>
+<p>需要定义存储过程 输入输出参数</p>
+</blockquote>
+<pre><code>&lt;parameterMap id=”存储过程参数” class=”map”&gt;  
+    &lt;parameter property=”email1” jdbcType=”varchar” javaType=”java.lang.String” mode=”INOUT”/&gt;  
+    &lt;parameter property=”email2” jdbcType=”varchar” javaType=”java.lang.String” mode=”INOUT”/&gt;  
+&lt;/parameterMap&gt;   
+
+&lt;procedure id=”Ibatis调用存储过程” parameterMap=” 存储过程参数”&gt;  
+       {call 存储过程名(?,?)}  
+&lt;/procedure&gt;   
+
+或
+&lt;procedure id=&quot;getXswdlBypkg&quot;  parameterClass=&quot;java.util.HashMap&quot; resultClass=&quot;java.util.HashMap&quot; remapResults=&quot;true&quot;&gt;
+    &lt;![CDATA[
+        { call lo_zhxswdl_web(  #sdate,jdbcType=VARCHAR,mode=IN# ,
+                                #edate,jdbcType=VARCHAR,mode=IN#,
+                                #dwdm,jdbcType=VARCHAR,mode=IN#,
+                                #dwtjbz,jdbcType=VARCHAR,mode=IN#, #getXswdl,javaType=java.sql.ResultSet,jdbcType=ORACLECURSOR,mode=OUT#
+                            )
+        }    
+    ]]&gt;
+&lt;/procedure&gt;</code></pre>
+<h4 id="1.1.7">1.1.7&nbsp;&nbsp;typeAlias 类别名</h4>
+<pre><code>定义别名，使用时就可省略包名
+&lt;typeAlias alias=&quot;Account&quot; type=&quot;com.mydomain.domain.Account&quot;/&gt;</code></pre>
+<h4 id="1.1.8">1.1.8&nbsp;&nbsp;resultMap</h4>
+<blockquote>
+<p>返回类型显示映射关系 </p>
+</blockquote>
+<pre><code>&lt;resultMap id=&quot;AccountResult&quot; class=&quot;Account&quot;&gt; 
+    &lt;result property=&quot;id&quot; column=&quot;ACC_ID&quot;/&gt; 
+    &lt;result property=&quot;firstName&quot; column=&quot;ACC_FIRST_NAME&quot;/&gt; 
+&lt;/resultMap&gt;</code></pre>
+<h4 id="1.1.9">1.1.9&nbsp;&nbsp;parameterMap</h4>
+<blockquote>
+<p>参数类型外联映射关系 </p>
+</blockquote>
+<pre><code>&lt;parameterMap id=”存储过程参数” class=”map”&gt;  
+   &lt;parameter property=”email1” jdbcType=”varchar” javaType=”java.lang.String” mode=”INOUT”/&gt;  
+   &lt;parameter property=”email2” jdbcType=”varchar” javaType=”java.lang.String” mode=”INOUT”/&gt;  
+&lt;/parameterMap&gt;</code></pre>
+<h2 id="2">2&nbsp;&nbsp;ibatis 动态标签</h2>
+<h3 id="2.1">2.1&nbsp;&nbsp;动态标签详情</h3>
+<h4 id="2.1.1">2.1.1&nbsp;&nbsp;dynamic</h4>
+<blockquote>
+<p>SQL语句的动态部分</p>
+</blockquote>
+<pre><code>&lt;dynamic prepend=&quot;WHERE&quot;&gt;  
+
+&lt;/dynamic&gt;</code></pre>
+<h3 id="2.2">2.2&nbsp;&nbsp;二元判断标签</h3>
+<pre><code>即：与静态值或属性的值比较 
+共同的元素 ：
+prepend（可选） 
+property(必选)    比较的属性
+compareProperty  另一个用于和前者比较的属性（必选或选择compareValue）
+compareValue     用于比较的值（必选或选择compareProperty）
+
+eg:
+&lt;isLessEqual prepend=”AND” property=”test” compareValue=”0”&gt;
+  sql条件语句
+&lt;/isLessEqual&gt;</code></pre>
+<h4 id="2.2.1">2.2.1&nbsp;&nbsp;isEqual</h4>
+<blockquote>
+<p>比较属性值和静态值或另一个属性值是否相等。</p>
+</blockquote>
+<h4 id="2.2.2">2.2.2&nbsp;&nbsp;isNotEqual</h4>
+<blockquote>
+<p>比较属性值和静态值或另一个属性值是否不相等。</p>
+</blockquote>
+<h4 id="2.2.3">2.2.3&nbsp;&nbsp;isGreaterThan</h4>
+<blockquote>
+<p>比较属性值是否大于静态值或另一个属性值。</p>
+</blockquote>
+<h4 id="2.2.4">2.2.4&nbsp;&nbsp;isGreaterEqual</h4>
+<blockquote>
+<p>比较属性值是否大于等于静态值或另一个属性值。</p>
+</blockquote>
+<h4 id="2.2.5">2.2.5&nbsp;&nbsp;isLessThan</h4>
+<blockquote>
+<p>比较属性值是否小于静态值或另一个属性值。</p>
+</blockquote>
+<h4 id="2.2.6">2.2.6&nbsp;&nbsp;isLessEqual</h4>
+<blockquote>
+<p>比较属性值是否小于等于静态值或另一个属性值。 </p>
+</blockquote>
+<h3 id="2.3">2.3&nbsp;&nbsp;一元判断标签</h3>
+<pre><code>即：检查属性的状态是否符合特定的条件
+共同的元素：
+prepend（可选） 
+property(必选)    比较的属性
+
+eg:
+&lt;isNotEmpty prepend=”AND” property=”test” &gt; 
+ sql条件语句
+&lt;/isNotEmpty&gt;</code></pre>
+<h4 id="2.3.1">2.3.1&nbsp;&nbsp;isPropertyAvailable</h4>
+<blockquote>
+<p>检查是否存在该属性（存在parameter bean的属性）。</p>
+</blockquote>
+<h4 id="2.3.2">2.3.2&nbsp;&nbsp;isNotPropertyAvailable</h4>
+<blockquote>
+<p>检查是否不存在该属性（不存在parameter bean的属性）。</p>
+</blockquote>
+<h4 id="2.3.3">2.3.3&nbsp;&nbsp;isNull</h4>
+<blockquote>
+<p>检查属性是否为null。</p>
+</blockquote>
+<h4 id="2.3.4">2.3.4&nbsp;&nbsp;isNotNull</h4>
+<blockquote>
+<p>检查属性是否不为null。</p>
+</blockquote>
+<h4 id="2.3.5">2.3.5&nbsp;&nbsp;isEmpty</h4>
+<blockquote>
+<p>检查Collection.size()的值，属性的String或String.valueOf()值,是否为null或空（“”或size() &lt; 1）。</p>
+</blockquote>
+<h4 id="2.3.6">2.3.6&nbsp;&nbsp;isNotEmpty</h4>
+<blockquote>
+<p>检查Collection.size()的值，属性的String或String.valueOf()值,是否不为null或不为空（“”或size() &gt; 0）</p>
+</blockquote>
+<h3 id="2.4">2.4&nbsp;&nbsp;高级标签</h3>
+<h4 id="2.4.1">2.4.1&nbsp;&nbsp;iterate</h4>
+<blockquote>
+<p>迭代标签</p>
+</blockquote>
+<pre><code>遍历类型为java.util.List(或数组)的元素
+标签元素：
+prepend（可选）    
+property（必选）   类型为java.util.List的用于遍历的元素
+open（可选）       整个遍历内容体开始的字符串，用于定义括号
+close（可选）      整个遍历内容体结束的字符串，用于定义括号
+conjunction（可选）每次遍历内容之间的字符串，用于定义AND或OR
+
+eg:
+id in 
+&lt;iterate  prepend=&quot;&quot; property=&quot;ids&quot;  open=&quot;(&quot;  close=&quot;)&quot;  conjunction=&quot;,&quot; &gt; 
+#ids[]# 
+&lt;/iterate&gt;
+生成的sql语句是：id in (xx1,xx2,xx3,.....)，括号中的(包括括号)是标签生成的
+
+注意：使用标签时，在List元素名后面包括方括号[]非常重要，方括号[]将对象标记为List，以防解析器简单地将List输出成String。</code></pre>
+
+<h2 id="3">3&nbsp;&nbsp;ibatis java使用</h2>
+<h3 id="3.1">3.1&nbsp;&nbsp;SqlMapClientTemplate和SqlMapClient</h3>
+<pre><code>SqlMapClientTemplate是SqlMapClient的封装类. 
+SqlMapClient中包含着session的管理. 
+SqlMapClientTemplate用于session的封装,以及异常的捕捉. 
+所以按照以上的推断来说.应该尽量使用SqlMapClientTemplate. 
+保证session以及Exception的正常以及统一.</code></pre>
+<h3 id="3.2">3.2&nbsp;&nbsp;java 封装</h3>
+<pre><code>    private SqlMapClientTemplate sqlMapClientTemplate = null;
+    private TransactionTemplate transactionTemplate = null;
+
+    public void setSqlMapClientTemplate(
+            SqlMapClientTemplate sqlMapClientTemplate) {
+        this.sqlMapClientTemplate = sqlMapClientTemplate;
+    }
+    public void setTransactionTemplate(TransactionTemplate transactionTemplate) {
+        this.transactionTemplate = transactionTemplate;
+    }
+
+    public SqlMapClientTemplate getSqlMapClientTemplate() {
+        return sqlMapClientTemplate;
+    }
+/**
+     * 查询返回List
+     * 
+     * @param sqlId
+     * @param obj
+     * @return
+     * @throws Exception
+     */
+    public List&lt;Object&gt; queryForList(String sqlId, Object obj) {
+        return sqlMapClientTemplate.queryForList(sqlId, obj);
+    }
+
+    /**
+     * 分页查询返回List
+     * 
+     * @param sqlId
+     * @param obj
+     * @return
+     * @throws Exception
+     */
+    public List&lt;Object&gt; queryForList(String sqlId, Object obj ,int start,int limit) {
+        return sqlMapClientTemplate.queryForList(sqlId, obj, start, limit);
+    }
+
+    /**
+     * 查询返回(clazz)Object
+     * 
+     * @param sqlId
+     * @param obj
+     * @param clazz
+     * @return
+     * @throws Exception
+     */
+    public Object queryForObject(String sqlId, Object obj, Class clazz) {
+        return clazz.cast(sqlMapClientTemplate.queryForObject(sqlId, obj));
+    }
+/**
+     * 非事务新增
+     * 
+     * @param sqlId
+     * @param obj
+     * @return
+     */
+    public Object insert(String sqlId, Object obj) {
+        return sqlMapClientTemplate.insert(sqlId, obj);
+    }
+
+    /**
+     * 非事务修改
+     * 
+     * @param sqlId
+     * @param obj
+     * @return
+     */
+    public int update(String sqlId, Object obj) {
+        return sqlMapClientTemplate.update(sqlId, obj);
+    }
+
+    /**
+     * 非事务删除
+     * 
+     * @param sqlId
+     * @param obj
+     * @return
+     */
+    public int delete(String sqlId, Object obj) {
+        return sqlMapClientTemplate.delete(sqlId, obj);
+
+    }
+
+    /**
+     * 批量事务处理 0增加1修改（调用存储过程）3删除    推荐使用
+     * 
+     * @param doType
+     * @param statementID
+     * @param paramObjs
+     * @return
+     */
+    public int executeBatchDB(final int doType, final String statementID,
+            final List paramObjs) {
+        int result = -1;
+        result = ((Integer) transactionTemplate
+                .execute(new TransactionCallback() {
+
+                    public Object doInTransaction(TransactionStatus status) {
+                        Integer rstObj = new Integer(-1);
+                        try {
+                            rstObj = exeBatch(doType, statementID, paramObjs);
+                        } catch (Exception e) {
+                            status.setRollbackOnly();
+                            e.printStackTrace();
+                            return new Integer(-1);
+                        }
+                        return rstObj;
+                    }
+                })).intValue();
+        return result;
+    }
+
+    public Integer exeBatch(final int doType, final String sqlId,
+            final List args) {
+        Integer result = new Integer(-1);
+        SqlMapClientCallback callback = new SqlMapClientCallback() {
+            public Object doInSqlMapClient(SqlMapExecutor executor)
+                    throws SQLException {
+                Integer rows = new Integer(-1);
+                executor.startBatch();
+                for (int i = 0; i &lt; args.size(); i++) {
+                    switch (doType) {
+                    case 0: {
+                        executor.insert(sqlId, args.get(i));
+                        break;
+                    }
+                    case 1: {
+                        executor.update(sqlId, args.get(i));
+                        break;
+                    }
+                    case 2: {
+                        executor.delete(sqlId, args.get(i));
+                        break;
+                    }
+                    }
+                }
+                rows = new Integer(executor.executeBatch());
+                return rows;
+            }
+        };
+        if (sqlId != null &amp;&amp; args != null &amp;&amp; !args.isEmpty()) {
+            result = (Integer) sqlMapClientTemplate.execute(callback);
+        }
+        return result;
+    }
+
+    /**
+     * 批量事务处理 0增加1修改（调用存储过程）3删除
+     * 
+     * @param doType
+     * @param sqlIds
+     * @param args
+     * @return
+     */
+    public int executeBatchDB(final int doType, final List&lt;String&gt; sqlIds,
+            final List args) {
+        int result = -1;
+        result = ((Integer) transactionTemplate
+                .execute(new TransactionCallback() {
+                    public Object doInTransaction(TransactionStatus status) {
+                        Integer rstObj = new Integer(-1);
+                        try {
+                            rstObj = exeBatchDB(doType, sqlIds, args);
+                        } catch (Exception e) {
+                            status.setRollbackOnly();
+                            e.printStackTrace();
+                            return new Integer(-1);
+                        }
+                        return rstObj;
+                    }
+                })).intValue();
+        return result;
+    }
+
+    private Integer exeBatchDB(final int doType, final List&lt;String&gt; sqlIds,
+            final List args) {
+        Integer result = new Integer(-1);
+        SqlMapClientCallback callback = new SqlMapClientCallback() {
+            public Object doInSqlMapClient(SqlMapExecutor executor)
+                    throws SQLException {
+                Integer rows = new Integer(-1);
+                executor.startBatch();
+                for (String sqlId : sqlIds) {
+                    for (int i = 0; i &lt; args.size(); i++) {
+                        switch (doType) {
+                        case 0: {
+                            executor.insert(sqlId, args.get(i));
+                            break;
+                        }
+                        case 1: {
+                            executor.update(sqlId, args.get(i));
+                            break;
+                        }
+                        case 2: {
+                            executor.delete(sqlId, args.get(i));
+                            break;
+                        }
+                        }
+                    }
+                }
+                rows = new Integer(executor.executeBatch());
+                return rows;
+            }
+        };
+        if (sqlIds != null &amp;&amp; !sqlIds.isEmpty() &amp;&amp; args != null
+                &amp;&amp; !args.isEmpty()) {
+            result = (Integer) sqlMapClientTemplate.execute(callback);
+        }
+        return result;
+    }</code></pre>
+
+</article>
+<footer>
+<p>© 2015-2016 杭杭工作室, Inc.</p>
+
+</footer>
+</body>
+</html>
